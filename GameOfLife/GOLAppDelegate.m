@@ -7,13 +7,53 @@
 //
 
 #import "GOLAppDelegate.h"
+#import "GOLWorldViewController.h"
+#import "GOLWorld.h"
+#import "GOLWorldViewModel.h"
 
 @implementation GOLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    GOLWorld *world = [[GOLWorld alloc] initWithSize:32];
+    [world seed:
+     @"................................\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"...................*............\n"
+     @"................................\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"................................\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............\n"
+     @"....*...*..........*............"];
+    GOLWorldViewModel *vm = [[GOLWorldViewModel alloc] initWithWorld:world];
+    self.window.rootViewController = [[GOLWorldViewController alloc] initWithWorldViewModel:vm];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

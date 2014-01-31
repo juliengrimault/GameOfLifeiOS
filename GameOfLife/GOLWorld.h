@@ -9,11 +9,6 @@
 #import <Foundation/Foundation.h>
 @class GOLCell;
 
-typedef enum CellState {
-    CellStateDead,
-    CellStateAlive
-} CellState;
-
 @interface GOLWorld : NSObject
 
 @property (nonatomic, readonly) NSUInteger size;
