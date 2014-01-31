@@ -1,0 +1,39 @@
+PODS:
+  - Expecta (0.2.3)
+  - libextobjc/EXTKeyPathCoding (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTScope (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.3)
+  - OCHamcrest (3.0.1)
+  - OCMockito (1.1.0):
+    - OCHamcrest (~> 3.0)
+  - ReactiveCocoa (2.2.3):
+    - ReactiveCocoa/Core
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/Core (2.2.3):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.2.3)
+  - ReactiveViewModel (0.2):
+    - ReactiveCocoa (~> 2.1)
+  - Specta (0.2.1)
+
+DEPENDENCIES:
+  - Expecta (~> 0.2)
+  - libextobjc/EXTKeyPathCoding (~> 0.3)
+  - libextobjc/EXTScope (~> 0.3)
+  - OCMockito (~> 1.0)
+  - ReactiveCocoa (~> 2.2.3)
+  - ReactiveViewModel (~> 0.2)
+  - Specta (~> 0.2)
+
+SPEC CHECKSUMS:
+  Expecta: dbc4a27fabb853bdd2e907e33f11ee43a9a47d0c
+  libextobjc: 820a79dbbbc498611e04fffd07d2d52a5588e7ac
+  OCHamcrest: 782c52ae8c673e5d6060a65005cfd26d20d519ba
+  OCMockito: 317fa0cf75c9b0d73d2be335789c556537be7fd2
+  ReactiveCocoa: b3cb6ebd50f1a0f2e39c6fd7ce3c428b6efcb22b
+  ReactiveViewModel: f636ab3e06b5e69664b69c883fcdb457ab5cb0cb
+  Specta: 2d06220591110c6d9757d8be8ecf8e63aa40dc2a
+
+COCOAPODS: 0.29.0

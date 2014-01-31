@@ -1,0 +1,587 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		104512E594C7427BBAB9CB32 /* libPods-GameOfLifeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C8460D587F41789CCA96AD /* libPods-GameOfLifeTests.a */; };
+		DA7249DB22654952B94D3D94 /* libPods-GameOfLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF0B4701E20E44C7A58AED84 /* libPods-GameOfLife.a */; };
+		F90F8CD2189B547E00BB5F10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90F8CD1189B547E00BB5F10 /* Foundation.framework */; };
+		F90F8CD4189B547E00BB5F10 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90F8CD3189B547E00BB5F10 /* CoreGraphics.framework */; };
+		F90F8CD6189B547E00BB5F10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90F8CD5189B547E00BB5F10 /* UIKit.framework */; };
+		F90F8CDC189B547F00BB5F10 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F90F8CDA189B547F00BB5F10 /* InfoPlist.strings */; };
+		F90F8CDE189B547F00BB5F10 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F8CDD189B547F00BB5F10 /* main.m */; };
+		F90F8CE2189B547F00BB5F10 /* GOLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F8CE1189B547F00BB5F10 /* GOLAppDelegate.m */; };
+		F90F8CE4189B547F00BB5F10 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F90F8CE3189B547F00BB5F10 /* Images.xcassets */; };
+		F90F8CEB189B547F00BB5F10 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90F8CEA189B547F00BB5F10 /* XCTest.framework */; };
+		F90F8CEC189B547F00BB5F10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90F8CD1189B547E00BB5F10 /* Foundation.framework */; };
+		F90F8CED189B547F00BB5F10 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90F8CD5189B547E00BB5F10 /* UIKit.framework */; };
+		F90F8CF5189B547F00BB5F10 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F90F8CF3189B547F00BB5F10 /* InfoPlist.strings */; };
+		F90F8D01189B589700BB5F10 /* WorldSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F8D00189B589700BB5F10 /* WorldSpec.m */; };
+		F90F8D04189B58D100BB5F10 /* GOLWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F8D03189B58D100BB5F10 /* GOLWorld.m */; };
+		F90F8D06189B5CF600BB5F10 /* GridSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F8D05189B5CF600BB5F10 /* GridSpec.m */; };
+		F90F8D09189B5D2500BB5F10 /* GOLGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F8D08189B5D2500BB5F10 /* GOLGrid.m */; };
+		F90F8D0C189B613B00BB5F10 /* GOLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F8D0B189B613B00BB5F10 /* GOLCell.m */; };
+		F9B402AB189B63BB0088C0FA /* CellSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B402AA189B63BB0088C0FA /* CellSpec.m */; };
+		F9B402AD189B6E2A0088C0FA /* RuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B402AC189B6E2A0088C0FA /* RuleSpec.m */; };
+		F9B402B0189B6E530088C0FA /* GOLRule.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B402AF189B6E530088C0FA /* GOLRule.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F90F8CEE189B547F00BB5F10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F90F8CC6189B547E00BB5F10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F90F8CCD189B547E00BB5F10;
+			remoteInfo = GameOfLife;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0CE132B8266A4D16B0D1544F /* Pods-GameOfLife.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfLife.xcconfig"; path = "Pods/Pods-GameOfLife.xcconfig"; sourceTree = "<group>"; };
+		82C8460D587F41789CCA96AD /* libPods-GameOfLifeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfLifeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBBAB225F6DA40D39D38E4B9 /* Pods-GameOfLifeTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfLifeTests.xcconfig"; path = "Pods/Pods-GameOfLifeTests.xcconfig"; sourceTree = "<group>"; };
+		F90F8CCE189B547E00BB5F10 /* GameOfLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F90F8CD1189B547E00BB5F10 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F90F8CD3189B547E00BB5F10 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F90F8CD5189B547E00BB5F10 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F90F8CD9189B547F00BB5F10 /* GameOfLife-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GameOfLife-Info.plist"; sourceTree = "<group>"; };
+		F90F8CDB189B547F00BB5F10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F90F8CDD189B547F00BB5F10 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F90F8CDF189B547F00BB5F10 /* GameOfLife-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GameOfLife-Prefix.pch"; sourceTree = "<group>"; };
+		F90F8CE0189B547F00BB5F10 /* GOLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GOLAppDelegate.h; sourceTree = "<group>"; };
+		F90F8CE1189B547F00BB5F10 /* GOLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GOLAppDelegate.m; sourceTree = "<group>"; };
+		F90F8CE3189B547F00BB5F10 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F90F8CE9189B547F00BB5F10 /* GameOfLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameOfLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F90F8CEA189B547F00BB5F10 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F90F8CF2189B547F00BB5F10 /* GameOfLifeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GameOfLifeTests-Info.plist"; sourceTree = "<group>"; };
+		F90F8CF4189B547F00BB5F10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F90F8D00189B589700BB5F10 /* WorldSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldSpec.m; sourceTree = "<group>"; };
+		F90F8D02189B58D100BB5F10 /* GOLWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOLWorld.h; sourceTree = "<group>"; };
+		F90F8D03189B58D100BB5F10 /* GOLWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GOLWorld.m; sourceTree = "<group>"; };
+		F90F8D05189B5CF600BB5F10 /* GridSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridSpec.m; sourceTree = "<group>"; };
+		F90F8D07189B5D2500BB5F10 /* GOLGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOLGrid.h; sourceTree = "<group>"; };
+		F90F8D08189B5D2500BB5F10 /* GOLGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GOLGrid.m; sourceTree = "<group>"; };
+		F90F8D0A189B613B00BB5F10 /* GOLCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOLCell.h; sourceTree = "<group>"; };
+		F90F8D0B189B613B00BB5F10 /* GOLCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GOLCell.m; sourceTree = "<group>"; };
+		F9B402AA189B63BB0088C0FA /* CellSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellSpec.m; sourceTree = "<group>"; };
+		F9B402AC189B6E2A0088C0FA /* RuleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleSpec.m; sourceTree = "<group>"; };
+		F9B402AE189B6E530088C0FA /* GOLRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOLRule.h; sourceTree = "<group>"; };
+		F9B402AF189B6E530088C0FA /* GOLRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GOLRule.m; sourceTree = "<group>"; };
+		FF0B4701E20E44C7A58AED84 /* libPods-GameOfLife.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameOfLife.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F90F8CCB189B547E00BB5F10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F90F8CD4189B547E00BB5F10 /* CoreGraphics.framework in Frameworks */,
+				F90F8CD6189B547E00BB5F10 /* UIKit.framework in Frameworks */,
+				F90F8CD2189B547E00BB5F10 /* Foundation.framework in Frameworks */,
+				DA7249DB22654952B94D3D94 /* libPods-GameOfLife.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F90F8CE6189B547F00BB5F10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F90F8CEB189B547F00BB5F10 /* XCTest.framework in Frameworks */,
+				F90F8CED189B547F00BB5F10 /* UIKit.framework in Frameworks */,
+				F90F8CEC189B547F00BB5F10 /* Foundation.framework in Frameworks */,
+				104512E594C7427BBAB9CB32 /* libPods-GameOfLifeTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F90F8CC5189B547E00BB5F10 = {
+			isa = PBXGroup;
+			children = (
+				F90F8CD7189B547F00BB5F10 /* GameOfLife */,
+				F90F8CF0189B547F00BB5F10 /* GameOfLifeTests */,
+				F90F8CD0189B547E00BB5F10 /* Frameworks */,
+				F90F8CCF189B547E00BB5F10 /* Products */,
+				0CE132B8266A4D16B0D1544F /* Pods-GameOfLife.xcconfig */,
+				BBBAB225F6DA40D39D38E4B9 /* Pods-GameOfLifeTests.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		F90F8CCF189B547E00BB5F10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F90F8CCE189B547E00BB5F10 /* GameOfLife.app */,
+				F90F8CE9189B547F00BB5F10 /* GameOfLifeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F90F8CD0189B547E00BB5F10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F90F8CD1189B547E00BB5F10 /* Foundation.framework */,
+				F90F8CD3189B547E00BB5F10 /* CoreGraphics.framework */,
+				F90F8CD5189B547E00BB5F10 /* UIKit.framework */,
+				F90F8CEA189B547F00BB5F10 /* XCTest.framework */,
+				FF0B4701E20E44C7A58AED84 /* libPods-GameOfLife.a */,
+				82C8460D587F41789CCA96AD /* libPods-GameOfLifeTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F90F8CD7189B547F00BB5F10 /* GameOfLife */ = {
+			isa = PBXGroup;
+			children = (
+				F90F8CE0189B547F00BB5F10 /* GOLAppDelegate.h */,
+				F90F8CE1189B547F00BB5F10 /* GOLAppDelegate.m */,
+				F90F8CE3189B547F00BB5F10 /* Images.xcassets */,
+				F90F8CD8189B547F00BB5F10 /* Supporting Files */,
+				F90F8D02189B58D100BB5F10 /* GOLWorld.h */,
+				F90F8D03189B58D100BB5F10 /* GOLWorld.m */,
+				F90F8D07189B5D2500BB5F10 /* GOLGrid.h */,
+				F90F8D08189B5D2500BB5F10 /* GOLGrid.m */,
+				F90F8D0A189B613B00BB5F10 /* GOLCell.h */,
+				F90F8D0B189B613B00BB5F10 /* GOLCell.m */,
+				F9B402AE189B6E530088C0FA /* GOLRule.h */,
+				F9B402AF189B6E530088C0FA /* GOLRule.m */,
+			);
+			path = GameOfLife;
+			sourceTree = "<group>";
+		};
+		F90F8CD8189B547F00BB5F10 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F90F8CD9189B547F00BB5F10 /* GameOfLife-Info.plist */,
+				F90F8CDA189B547F00BB5F10 /* InfoPlist.strings */,
+				F90F8CDD189B547F00BB5F10 /* main.m */,
+				F90F8CDF189B547F00BB5F10 /* GameOfLife-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F90F8CF0189B547F00BB5F10 /* GameOfLifeTests */ = {
+			isa = PBXGroup;
+			children = (
+				F90F8CF1189B547F00BB5F10 /* Supporting Files */,
+				F90F8D00189B589700BB5F10 /* WorldSpec.m */,
+				F90F8D05189B5CF600BB5F10 /* GridSpec.m */,
+				F9B402AA189B63BB0088C0FA /* CellSpec.m */,
+				F9B402AC189B6E2A0088C0FA /* RuleSpec.m */,
+			);
+			path = GameOfLifeTests;
+			sourceTree = "<group>";
+		};
+		F90F8CF1189B547F00BB5F10 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F90F8CF2189B547F00BB5F10 /* GameOfLifeTests-Info.plist */,
+				F90F8CF3189B547F00BB5F10 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F90F8CCD189B547E00BB5F10 /* GameOfLife */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F90F8CFA189B547F00BB5F10 /* Build configuration list for PBXNativeTarget "GameOfLife" */;
+			buildPhases = (
+				949AD3D92FC44DB69D2F1CC4 /* Check Pods Manifest.lock */,
+				F90F8CCA189B547E00BB5F10 /* Sources */,
+				F90F8CCB189B547E00BB5F10 /* Frameworks */,
+				F90F8CCC189B547E00BB5F10 /* Resources */,
+				6CD907EBC74D4AFEA49C5A43 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GameOfLife;
+			productName = GameOfLife;
+			productReference = F90F8CCE189B547E00BB5F10 /* GameOfLife.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F90F8CE8189B547F00BB5F10 /* GameOfLifeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F90F8CFD189B547F00BB5F10 /* Build configuration list for PBXNativeTarget "GameOfLifeTests" */;
+			buildPhases = (
+				DE64A8D1CD0F4512AEE5DB45 /* Check Pods Manifest.lock */,
+				F90F8CE5189B547F00BB5F10 /* Sources */,
+				F90F8CE6189B547F00BB5F10 /* Frameworks */,
+				F90F8CE7189B547F00BB5F10 /* Resources */,
+				9A85E63FBBC541BB8A2BA3A7 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F90F8CEF189B547F00BB5F10 /* PBXTargetDependency */,
+			);
+			name = GameOfLifeTests;
+			productName = GameOfLifeTests;
+			productReference = F90F8CE9189B547F00BB5F10 /* GameOfLifeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F90F8CC6189B547E00BB5F10 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GOL;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = julien;
+				TargetAttributes = {
+					F90F8CCD189B547E00BB5F10 = {
+						DevelopmentTeam = CXMH86WRR5;
+					};
+					F90F8CE8189B547F00BB5F10 = {
+						TestTargetID = F90F8CCD189B547E00BB5F10;
+					};
+				};
+			};
+			buildConfigurationList = F90F8CC9189B547E00BB5F10 /* Build configuration list for PBXProject "GameOfLife" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F90F8CC5189B547E00BB5F10;
+			productRefGroup = F90F8CCF189B547E00BB5F10 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F90F8CCD189B547E00BB5F10 /* GameOfLife */,
+				F90F8CE8189B547F00BB5F10 /* GameOfLifeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F90F8CCC189B547E00BB5F10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F90F8CDC189B547F00BB5F10 /* InfoPlist.strings in Resources */,
+				F90F8CE4189B547F00BB5F10 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F90F8CE7189B547F00BB5F10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F90F8CF5189B547F00BB5F10 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6CD907EBC74D4AFEA49C5A43 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-GameOfLife-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		949AD3D92FC44DB69D2F1CC4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9A85E63FBBC541BB8A2BA3A7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-GameOfLifeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE64A8D1CD0F4512AEE5DB45 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F90F8CCA189B547E00BB5F10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F90F8D09189B5D2500BB5F10 /* GOLGrid.m in Sources */,
+				F90F8D04189B58D100BB5F10 /* GOLWorld.m in Sources */,
+				F9B402B0189B6E530088C0FA /* GOLRule.m in Sources */,
+				F90F8D0C189B613B00BB5F10 /* GOLCell.m in Sources */,
+				F90F8CDE189B547F00BB5F10 /* main.m in Sources */,
+				F90F8CE2189B547F00BB5F10 /* GOLAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F90F8CE5189B547F00BB5F10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9B402AD189B6E2A0088C0FA /* RuleSpec.m in Sources */,
+				F90F8D06189B5CF600BB5F10 /* GridSpec.m in Sources */,
+				F90F8D01189B589700BB5F10 /* WorldSpec.m in Sources */,
+				F9B402AB189B63BB0088C0FA /* CellSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F90F8CEF189B547F00BB5F10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F90F8CCD189B547E00BB5F10 /* GameOfLife */;
+			targetProxy = F90F8CEE189B547F00BB5F10 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F90F8CDA189B547F00BB5F10 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F90F8CDB189B547F00BB5F10 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F90F8CF3189B547F00BB5F10 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F90F8CF4189B547F00BB5F10 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F90F8CF8189B547F00BB5F10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F90F8CF9189B547F00BB5F10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F90F8CFB189B547F00BB5F10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CE132B8266A4D16B0D1544F /* Pods-GameOfLife.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GameOfLife/GameOfLife-Prefix.pch";
+				INFOPLIST_FILE = "GameOfLife/GameOfLife-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F90F8CFC189B547F00BB5F10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CE132B8266A4D16B0D1544F /* Pods-GameOfLife.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GameOfLife/GameOfLife-Prefix.pch";
+				INFOPLIST_FILE = "GameOfLife/GameOfLife-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F90F8CFE189B547F00BB5F10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBBAB225F6DA40D39D38E4B9 /* Pods-GameOfLifeTests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GameOfLife.app/GameOfLife";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GameOfLife/GameOfLife-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GameOfLifeTests/GameOfLifeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F90F8CFF189B547F00BB5F10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBBAB225F6DA40D39D38E4B9 /* Pods-GameOfLifeTests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GameOfLife.app/GameOfLife";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GameOfLife/GameOfLife-Prefix.pch";
+				INFOPLIST_FILE = "GameOfLifeTests/GameOfLifeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F90F8CC9189B547E00BB5F10 /* Build configuration list for PBXProject "GameOfLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F90F8CF8189B547F00BB5F10 /* Debug */,
+				F90F8CF9189B547F00BB5F10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F90F8CFA189B547F00BB5F10 /* Build configuration list for PBXNativeTarget "GameOfLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F90F8CFB189B547F00BB5F10 /* Debug */,
+				F90F8CFC189B547F00BB5F10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F90F8CFD189B547F00BB5F10 /* Build configuration list for PBXNativeTarget "GameOfLifeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F90F8CFE189B547F00BB5F10 /* Debug */,
+				F90F8CFF189B547F00BB5F10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F90F8CC6189B547E00BB5F10 /* Project object */;
+}
