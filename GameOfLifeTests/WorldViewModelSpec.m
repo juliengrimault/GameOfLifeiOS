@@ -18,6 +18,10 @@
 #import "GOLCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+@interface GOLWorldViewModel ()
+@property (nonatomic, strong) RACSignal *clock;
+@end
+
 SpecBegin(GOLWorldViewModel)
 
 describe(@"WorldViewModel", ^{
@@ -57,29 +61,48 @@ describe(@"WorldViewModel", ^{
     
     
     describe(@"ticking", ^{
-        __block GOLWorld *mock;
         beforeEach(^{
-            mock = mock([GOLWorld class]);
-            vm = [[GOLWorldViewModel alloc] initWithWorld:mock];
-            vm.tickInterval = 0.1;
-        });
-        
-        it(@"regularly", ^{
-            __block NSUInteger counter = 0;
-            [vm.clock doNext:^(id x) {
-                counter++;
-            }];
+            vm.tickInterval = 0.2;
             vm.active = YES;
-            [Expecta setAsynchronousTestTimeout:2];
-            expect(counter).will.beGreaterThanOrEqualTo(1);
+        });
+        afterEach(^{
+            vm.clock = nil;
         });
         
         it(@"tick the world on every clock tick", ^{
             [vm.clock subscribeNext:^(id x) {
             }];
-            expect(vm.generationCount).will.beGreaterThanOrEqualTo(1);
-            vm.active = YES;
+            vm.running = YES;
+            expect(vm.generationCount).will.equal(5);
+        });
 
+        it(@"changes the frequency with the tick interval", ^{
+            vm.tickInterval = 0.1;
+            NSTimeInterval timeout = 1.0;
+            
+            __block NSUInteger counter = 0;
+            [vm.clock subscribeNext:^(id x) {
+                counter++;
+            }];
+            vm.running = YES;
+            [Expecta setAsynchronousTestTimeout:timeout];
+            expect(counter).will.equal((timeout / vm.tickInterval));
+
+        });
+        
+        it(@"stop if running is set to NO", ^{
+            __block NSError *timeout = nil;
+            __block NSUInteger counter = 0;
+            [[vm.clock timeout:0.5 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+                vm.running = NO;
+                counter++;
+            } error:^(NSError *error) {
+                timeout = error;
+            }];
+            vm.running = YES;
+            
+            expect(counter).will.equal(1);
+            expect(timeout).willNot.beNil();
         });
     });
 });

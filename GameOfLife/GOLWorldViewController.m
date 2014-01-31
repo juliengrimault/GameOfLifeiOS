@@ -15,6 +15,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *generationCountLabel;
 @property (nonatomic, weak) IBOutlet UILabel *tickIntervalLabel;
 @property (nonatomic, weak) IBOutlet UISlider *tickerIntervalSlider;
+@property (nonatomic, weak) IBOutlet UIButton *startStopButton;
 @end
 
 @implementation GOLWorldViewController
@@ -50,6 +51,11 @@
         @strongify(self);
         [self.collectionView reloadData];
     }];
+    
+    [RACObserve(self.worldViewModel, startStopButtonTitle) subscribeNext:^(id x) {
+        @strongify(self);
+        [self.startStopButton setTitle:x forState:UIControlStateNormal];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -83,5 +89,11 @@
 }
 
 #pragma mark - UICollectionViewDelegate
+
+#pragma mark - UIButton
+- (IBAction)startOrStopSimulation:(id)sender
+{
+    self.worldViewModel.running = !self.worldViewModel.running;
+}
 
 @end

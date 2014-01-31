@@ -63,8 +63,8 @@
     NSUInteger maxCol = MIN(col + 1, self.size - 1);
     
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:8];
-    for (int i = minRow; i <= maxRow; i++) {
-        for (int j = minCol; j <= maxCol; j++) {
+    for (NSUInteger i = minRow; i <= maxRow; i++) {
+        for (NSUInteger j = minCol; j <= maxCol; j++) {
             if (i == row && j == col)
                 continue;
             

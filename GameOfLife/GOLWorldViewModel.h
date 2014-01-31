@@ -23,7 +23,7 @@ typedef enum CellState {
 @property (nonatomic, readonly) NSUInteger generationCount;
 
 @property (nonatomic, readonly) NSString *startStopButtonTitle;
-@property (nonatomic, readonly) BOOL running;
+@property (nonatomic, getter = isRunning) BOOL running;
 
 @property (nonatomic, readonly) NSUInteger rows;
 @property (nonatomic, readonly) NSUInteger columns;

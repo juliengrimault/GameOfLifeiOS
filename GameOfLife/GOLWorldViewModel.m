@@ -40,18 +40,33 @@
         }
     }];
     
+    RACSignal *runningSignal = RACObserve(self, running);
+    
+    
+    RACSignal *startSignal = [[[[[RACSignal combineLatest:@[runningSignal, RACObserve(self, tickInterval)]]
+                               filter:^BOOL(RACTuple *t) {
+                                   return [t.first boolValue];
+                               }]
+                                map:^id(RACTuple *t) {
+                                  return t.second;
+                              }]
+                              setNameWithFormat:@"startClockSignal"] logAll];
+    
+    RACSignal *stopSignal = [[[runningSignal filter:^BOOL(id value) { return ![value boolValue]; }] setNameWithFormat:@"stopClockSignal"] logAll];
+    
     @weakify(self);
-    self.clock = [[[RACSignal combineLatest:@[self.didBecomeActiveSignal, RACObserve(self, tickInterval) ]
-                                     reduce:^id(id x, NSNumber *interval) { return interval; }]
-                   map:^RACStream *(NSNumber *interval) {
+    self.clock = [[[[[startSignal map:^RACStream *(NSNumber *interval) {
+                       return [[RACSignal interval:[interval doubleValue]
+                                          onScheduler:[RACScheduler mainThreadScheduler]]
+                               takeUntil:stopSignal];
+                    }] switchToLatest]
+                    
+                   doNext:^(id x) {
                        @strongify(self);
-
-                       return [[[RACSignal interval:[interval doubleValue] onScheduler:[RACScheduler mainThreadScheduler]]
-                                takeUntil:self.didBecomeInactiveSignal]
-                               doNext:^(id x) {
-                                   [self.world tick];
-                               }];
-                   }] switchToLatest];
+                       [self.world tick];
+                   }]
+                   
+                   setNameWithFormat:@"clockSignal"] logAll];
     
     return self;
 }

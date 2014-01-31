@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="collectionView" destination="UYk-9g-Qh2" id="KoV-sd-N76"/>
                 <outlet property="generationCountLabel" destination="vQY-uQ-Q0e" id="Je0-gA-63H"/>
+                <outlet property="startStopButton" destination="B1K-yN-xY5" id="WCa-Z8-5bJ"/>
                 <outlet property="tickIntervalLabel" destination="o4J-xb-5kU" id="o7J-Xd-ycq"/>
                 <outlet property="tickerIntervalSlider" destination="dGN-JM-8UW" id="T0D-0h-NAQ"/>
                 <outlet property="view" destination="jzv-qZ-Pk8" id="baQ-W6-RNf"/>
@@ -65,6 +66,17 @@
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B1K-yN-xY5">
+                    <rect key="frame" x="20" y="490" width="280" height="58"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <state key="normal" title="Start">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="startOrStopSimulation:" destination="-1" eventType="touchUpInside" id="OsK-KX-G4a"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
