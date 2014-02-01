@@ -26,7 +26,10 @@ typedef enum CellState {
 @property (nonatomic, readonly, getter = isStopButtonHidden) BOOL stopButtonHidden;
 @property (nonatomic, readonly, getter = isRandomizeButtonHidden) BOOL randomizeButtonHidden;
 
-@property (nonatomic, getter = isRunning) BOOL running;
+@property (nonatomic, readonly, getter = isRunning) BOOL running;
+- (void)play;
+- (void)pause;
+- (void)stop;
 
 @property (nonatomic, readonly) NSUInteger rows;
 @property (nonatomic, readonly) NSUInteger columns;

@@ -102,9 +102,18 @@
 #pragma mark - UICollectionViewDelegate
 
 #pragma mark - UIButton
-- (IBAction)startOrStopSimulation:(id)sender
+- (IBAction)playOrPauseSimulation:(id)sender
 {
-    self.worldViewModel.running = !self.worldViewModel.running;
+    if (self.worldViewModel.running)
+        [self.worldViewModel pause];
+    else
+        [self.worldViewModel play];
+}
+
+- (IBAction)stopSimulation:(id)sender
+{
+    [self.worldViewModel stop];
+    [self.collectionView reloadData];
 }
 
 @end

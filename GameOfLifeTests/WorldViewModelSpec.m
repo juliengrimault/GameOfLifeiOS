@@ -71,15 +71,27 @@ describe(@"WorldViewModel", ^{
             [verify(mockRunner) clock];
         });
         
-        it(@"forwards isRunning call to runner", ^{
-            BOOL _ = [vm isRunning];
-            [verify(mockRunner) isRunning];
+        it(@"forward `play` call to runner", ^{
+            [vm play];
+            [verify(mockRunner) play];
         });
         
-        it(@"forwards isRunning call to runner", ^{
-            vm.running = YES;
-            [verify(mockRunner) setRunning:YES];
+        it(@"forward `pause` call to runner", ^{
+            [vm pause];
+            [verify(mockRunner) pause];
         });
+        
+        it(@"forward `stop` call to runner", ^{
+            [vm stop];
+            [verify(mockRunner) stop];
+        });
+    });
+    
+    it(@"binds running to runner.running", ^{
+        [vm.runner pause];
+        expect([vm isRunning]).to.beFalsy();
+        [vm.runner play];
+        expect(vm.running).to.beTruthy();
     });
     
     it(@"binds tickInterval to runner.tickInterval", ^{
@@ -97,12 +109,11 @@ describe(@"WorldViewModel", ^{
     
     describe(@"Button visibility", ^{
         it(@"has Play button title when the world is not running", ^{
-            vm.running = NO;
             expect(vm.playPauseButtonTitle).to.equal(@"Play");
         });
         
         it(@"has Pause button title when the world is running", ^{
-            vm.running = YES;
+            [vm play];
             expect(vm.playPauseButtonTitle).to.equal(@"Pause");
         });
         

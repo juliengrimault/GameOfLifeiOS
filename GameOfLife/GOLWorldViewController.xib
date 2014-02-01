@@ -59,7 +59,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="startOrStopSimulation:" destination="-1" eventType="touchUpInside" id="OsK-KX-G4a"/>
+                        <action selector="playOrPauseSimulation:" destination="-1" eventType="touchUpInside" id="fAR-3d-t8Z"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zz1-Yp-czt">
@@ -69,9 +69,6 @@
                     <state key="normal" title="Random">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <connections>
-                        <action selector="startOrStopSimulation:" destination="-1" eventType="touchUpInside" id="PHg-2f-5J7"/>
-                    </connections>
                 </button>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="48d-yU-a1a">
                     <rect key="frame" x="20" y="471" width="280" height="29"/>
@@ -89,6 +86,9 @@
                     <state key="normal" title="Stop">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="stopSimulation:" destination="-1" eventType="touchUpInside" id="bAu-0t-37z"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

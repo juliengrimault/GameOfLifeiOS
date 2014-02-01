@@ -35,6 +35,8 @@
     // we need the 2 ways binding because tickInterval is not readonly.
     RACChannelTo(self,tickInterval) = RACChannelTo(self.runner, tickInterval);
     
+    RAC(self, running) = RACObserve(self.runner, running);
+    
     RACSignal *startedSignal = [generationCount map:^id(NSNumber *generation) {
         return @([generation integerValue] > 0);
     }];
@@ -53,20 +55,28 @@
     return self;
 }
 
+#pragma mark - GOLWorldRunner proxy
 - (RACSignal *)clock
 {
     return self.runner.clock;
 }
 
-- (BOOL)isRunning
+- (void)play
 {
-    return [self.runner isRunning];
+    [self.runner play];
 }
 
-- (void)setRunning:(BOOL)running
+- (void)pause
 {
-    self.runner.running = running;
+    [self.runner pause];
 }
+
+- (void)stop
+{
+    [self.runner stop];
+}
+
+#pragma mark - UICollectionViewDataSource
 
 - (NSUInteger)numberOfItems
 {

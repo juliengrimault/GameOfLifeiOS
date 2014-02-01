@@ -7,18 +7,63 @@
 //
 
 #define EXP_SHORTHAND
-
+#define HC_SHORTHAND
+#define MOCKITO_SHORTHAND
 #import <Specta/Specta.h>
 #import <Expecta/Expecta.h>
+#import <OCHamcrest/OCHamcrest.h>
+#import <OCMockito/OCMockito.h>
+
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "GOLWorld.h"
 #import "GOLWorldRunner.h"
+#import "GOLCell.h"
+
+@interface GOLWorldRunner()
+@property (nonatomic, strong) GOLWorld *world;
+@end
 
 SpecBegin(GOLWorldRunner)
 
 describe(@"WorldRunner", ^{
-    __block GOLWorld *world = [[GOLWorld alloc] initWithSize:2];
-    __block GOLWorldRunner *runner = [[GOLWorldRunner alloc] initWithWorld:world];
+    NSString *seedPattern = @"*.\n"
+                            @"..";
+    __block GOLWorld *world;
+    __block GOLWorldRunner *runner;
+    
+    beforeEach(^{
+        world = [[GOLWorld alloc] initWithSize:2];
+        [world seed:seedPattern];
+        runner = [[GOLWorldRunner alloc] initWithWorld:world];
+    });
+    
+    it(@"sets running to YES when calling play", ^{
+        [runner play];
+        expect([runner isRunning]).to.beTruthy();
+    });
+    
+    it(@"sets running to NO when calling pause", ^{
+        [runner pause];
+        expect([runner isRunning]).to.beFalsy();
+    });
+    
+    describe(@"Stop",^{
+        it(@"flips running to false", ^{
+            [runner play];
+            [runner stop];
+            expect([runner isRunning]).to.beFalsy();
+
+        });
+        
+        it(@"reset the world to its initial state", ^{
+            GOLWorld *mockWorld = mock([GOLWorld class]);
+            runner.world = mockWorld;
+            [runner play];
+            [runner stop];
+            [verify(mockWorld) seed:seedPattern];
+        });
+    });
+    
     
     describe(@"ticking", ^{
         beforeEach(^{
@@ -28,7 +73,7 @@ describe(@"WorldRunner", ^{
         it(@"tick the world on every clock tick", ^{
             [runner.clock subscribeNext:^(id x) {
             }];
-            runner.running = YES;
+            [runner play];
             expect(world.generationCount).will.equal(5);
         });
         
@@ -40,7 +85,7 @@ describe(@"WorldRunner", ^{
             [runner.clock subscribeNext:^(id x) {
                 counter++;
             }];
-            runner.running = YES;
+            [runner play];
             [Expecta setAsynchronousTestTimeout:timeout];
             expect(counter).will.equal((timeout / runner.tickInterval));
             
@@ -50,12 +95,12 @@ describe(@"WorldRunner", ^{
             __block NSError *timeout = nil;
             __block NSUInteger counter = 0;
             [[runner.clock timeout:0.5 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-                runner.running = NO;
+                [runner pause];
                 counter++;
             } error:^(NSError *error) {
                 timeout = error;
             }];
-            runner.running = YES;
+            [runner play];
             
             expect(counter).will.equal(1);
             expect(timeout).willNot.beNil();

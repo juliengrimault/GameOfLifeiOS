@@ -15,8 +15,13 @@
 @property (nonatomic, readonly) RACSignal *clock;
 @property (nonatomic) NSTimeInterval tickInterval;
 
-@property (nonatomic, getter = isRunning) BOOL running;
+@property (nonatomic, readonly, getter = isRunning) BOOL running;
+- (void)play;
+- (void)pause;
+- (void)stop;
 
 - (id)initWithWorld:(GOLWorld *)world;
+
+
 
 @end
