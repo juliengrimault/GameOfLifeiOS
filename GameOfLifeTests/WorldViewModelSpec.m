@@ -17,10 +17,13 @@
 #import "GOLWorld.h"
 #import "GOLCell.h"
 #import "GOLWorldRunner.h"
+#import "GOLWorldSeeder.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface GOLWorldViewModel ()
 @property (nonatomic, strong) GOLWorldRunner *runner;
+@property (nonatomic, strong) GOLWorldSeeder *seeder;
+@property (nonatomic, strong) GOLWorld *world;
 @end
 
 SpecBegin(GOLWorldViewModel)
@@ -105,7 +108,24 @@ describe(@"WorldViewModel", ^{
         expect(vm.tickInterval).equal(5);
     });
     
+    describe(@"randomize world", ^{
+        it(@"asks the seeder to generate a patter", ^{
+            id mockSeeder = mock([GOLWorldSeeder class]);
+            vm.seeder = mockSeeder;
 
+            [vm randomize];
+            [verify(mockSeeder) generatePattern];
+           
+        });
+        
+        it(@"seed the world", ^{
+            id mockWorld = mock([GOLWorld class]);
+            vm.world = mockWorld;
+            
+            [vm randomize];
+            [verify(mockWorld) seed:anything()];
+        });
+    });
     
     describe(@"Button visibility", ^{
         it(@"has Play button title when the world is not running", ^{

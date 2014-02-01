@@ -5,16 +5,19 @@
 //  Created by Julien on 31/1/14.
 //  Copyright (c) 2014 julien. All rights reserved.
 //
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "GOLWorldViewModel.h"
 #import "GOLWorld.h"
 #import "GOLCell.h"
 #import "GOLWorldRunner.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "GOLWorldSeeder.h"
+
 
 @interface GOLWorldViewModel ()
 @property (nonatomic, strong) GOLWorldRunner *runner;
 @property (nonatomic, strong) GOLWorld *world;
+@property (nonatomic, strong) GOLWorldSeeder *seeder;
 @end
 
 @implementation GOLWorldViewModel
@@ -26,6 +29,8 @@
     
     _world = world;
     _runner = [[GOLWorldRunner alloc] initWithWorld:world];
+    _seeder = [[GOLWorldSeeder alloc] initWithSize:world.size];
+    
     RACSignal *generationCount = RACObserve(self.world, generationCount);
     RAC(self, generationCount) = generationCount;
     RAC(self, rows) = RACObserve(self.world, size);
@@ -74,6 +79,12 @@
 - (void)stop
 {
     [self.runner stop];
+}
+
+- (void)randomize
+{
+    NSString *pattern = [self.seeder generatePattern];
+    [self.world seed:pattern];
 }
 
 #pragma mark - UICollectionViewDataSource

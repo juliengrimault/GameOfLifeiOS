@@ -69,6 +69,9 @@
                     <state key="normal" title="Random">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="randomizeWorld:" destination="-1" eventType="touchUpInside" id="VFr-zh-z4K"/>
+                    </connections>
                 </button>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="48d-yU-a1a">
                     <rect key="frame" x="20" y="471" width="280" height="29"/>

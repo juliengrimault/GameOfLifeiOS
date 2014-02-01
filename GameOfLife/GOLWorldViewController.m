@@ -45,6 +45,8 @@
     RAC(self.stopButton, hidden) = RACObserve(self.worldViewModel, stopButtonHidden);
     RAC(self.randomButton, hidden) = RACObserve(self.worldViewModel, randomizeButtonHidden);
     
+    // setup 2 ways binding between the segmented control and the tickInterval in the ViewModel.
+    // we need to do a transformation of the data between a NSTimeInterval and an index in the segmented control.
     RACChannelTerminal *vmTickIntervalTerminal = RACChannelTo(self.worldViewModel, tickInterval);
     RACChannelTerminal *segmentedControlTerminal = [self.speedSegmentedControl rac_newSelectedSegmentIndexChannelWithNilValue:@1];
     [[vmTickIntervalTerminal map:^id(NSNumber *tick) {
@@ -57,11 +59,13 @@
     
     
     @weakify(self);
+    // reload the collecitonview whenever we send a new tick
     [self.worldViewModel.clock subscribeNext:^(id x) {
         @strongify(self);
         [self.collectionView reloadData];
     }];
     
+    // update the play_pause button title when needed
     [RACObserve(self.worldViewModel, playPauseButtonTitle) subscribeNext:^(id x) {
         @strongify(self);
         [self.playPauseButton setTitle:x forState:UIControlStateNormal];
@@ -113,6 +117,12 @@
 - (IBAction)stopSimulation:(id)sender
 {
     [self.worldViewModel stop];
+    [self.collectionView reloadData];
+}
+
+- (IBAction)randomizeWorld:(id)sender
+{
+    [self.worldViewModel randomize];
     [self.collectionView reloadData];
 }
 
