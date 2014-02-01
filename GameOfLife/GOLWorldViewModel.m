@@ -27,21 +27,27 @@
     
     _world = world;
     _tickInterval = 1.0;
-    RAC(self, generationCount) = RACObserve(self.world, generationCount);
+    RACSignal *generationCount = RACObserve(self.world, generationCount);
+    RAC(self, generationCount) = generationCount;
     RAC(self, rows) = RACObserve(self.world, size);
     RAC(self, columns) = RACObserve(self.world, size);
     
+    RACSignal *startedSignal = [generationCount map:^id(NSNumber *generation) {
+        return @([generation integerValue] > 0);
+    }];
     
-    RAC(self, startStopButtonTitle) = [RACObserve(self, running) map:^id(NSNumber *x) {
+    RAC(self, stopButtonHidden) = [startedSignal not];
+    RAC(self, randomizeButtonHidden) = startedSignal;
+    
+    RAC(self, playPauseButtonTitle) = [RACObserve(self, running) map:^id(NSNumber *x) {
         if ([x boolValue]) {
-            return NSLocalizedString(@"Stop", nil);
+            return NSLocalizedString(@"Pause", nil);
         } else {
-            return NSLocalizedString(@"Start", nil);
+            return NSLocalizedString(@"Play", nil);
         }
     }];
     
     RACSignal *runningSignal = RACObserve(self, running);
-    
     
     RACSignal *startSignal = [[[[[RACSignal combineLatest:@[runningSignal, RACObserve(self, tickInterval)]]
                                filter:^BOOL(RACTuple *t) {

@@ -60,6 +60,37 @@ describe(@"WorldViewModel", ^{
     });
     
     
+    describe(@"Button visibility", ^{
+        it(@"has Play button title when the world is not running", ^{
+            vm.running = NO;
+            expect(vm.playPauseButtonTitle).to.equal(@"Play");
+        });
+        
+        it(@"has Pause button title when the world is running", ^{
+            vm.running = YES;
+            expect(vm.playPauseButtonTitle).to.equal(@"Pause");
+        });
+        
+        it(@"shows the Stop button when simulation is started", ^{
+            [world tick];
+            expect(vm.stopButtonHidden).to.equal(NO);
+        });
+        
+        it(@"hides the Stop button when simulation is not started", ^{
+            expect(vm.stopButtonHidden).to.equal(YES);
+        });
+        
+        it(@"shows the randomize button when the simulation is not started", ^{
+            expect(vm.randomizeButtonHidden).to.equal(NO);
+        });
+        
+        it(@"hides the randomize button when the simulation is started", ^{
+            [world tick];
+            expect(vm.randomizeButtonHidden).to.equal(YES);
+        });
+    });
+    
+    
     describe(@"ticking", ^{
         beforeEach(^{
             vm.tickInterval = 0.2;

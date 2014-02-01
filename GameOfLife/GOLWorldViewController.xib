@@ -8,8 +8,10 @@
             <connections>
                 <outlet property="collectionView" destination="UYk-9g-Qh2" id="KoV-sd-N76"/>
                 <outlet property="generationCountLabel" destination="vQY-uQ-Q0e" id="Je0-gA-63H"/>
+                <outlet property="playPauseButton" destination="B1K-yN-xY5" id="MGQ-0e-bdC"/>
+                <outlet property="randomButton" destination="zz1-Yp-czt" id="wvS-dY-odf"/>
                 <outlet property="speedSegmentedControl" destination="48d-yU-a1a" id="UOk-An-oLC"/>
-                <outlet property="startStopButton" destination="B1K-yN-xY5" id="WCa-Z8-5bJ"/>
+                <outlet property="stopButton" destination="p6R-oE-Ji2" id="Q6q-lz-Zvy"/>
                 <outlet property="view" destination="jzv-qZ-Pk8" id="baQ-W6-RNf"/>
             </connections>
         </placeholder>
@@ -50,14 +52,25 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B1K-yN-xY5">
-                    <rect key="frame" x="20" y="507" width="280" height="41"/>
+                    <rect key="frame" x="20" y="507" width="130" height="41"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <state key="normal" title="Start">
+                    <state key="normal" title="Play">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="startOrStopSimulation:" destination="-1" eventType="touchUpInside" id="OsK-KX-G4a"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zz1-Yp-czt">
+                    <rect key="frame" x="170" y="507" width="130" height="41"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <state key="normal" title="Random">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="startOrStopSimulation:" destination="-1" eventType="touchUpInside" id="PHg-2f-5J7"/>
                     </connections>
                 </button>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="48d-yU-a1a">
@@ -69,20 +82,35 @@
                         <segment title="Fast"/>
                     </segments>
                 </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6R-oE-Ji2">
+                    <rect key="frame" x="170" y="507" width="130" height="41"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <state key="normal" title="Stop">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="zz1-Yp-czt" secondAttribute="trailing" constant="20" id="3Wt-AO-2uG"/>
                 <constraint firstAttribute="centerX" secondItem="48d-yU-a1a" secondAttribute="centerX" id="3kb-YR-Qgt"/>
+                <constraint firstItem="p6R-oE-Ji2" firstAttribute="leading" secondItem="zz1-Yp-czt" secondAttribute="leading" id="3xQ-1T-Iew"/>
                 <constraint firstItem="B1K-yN-xY5" firstAttribute="leading" secondItem="jzv-qZ-Pk8" secondAttribute="leading" constant="20" symbolic="YES" id="5Ao-5y-3pk"/>
-                <constraint firstAttribute="centerX" secondItem="B1K-yN-xY5" secondAttribute="centerX" constant="0.5" id="7Cc-dK-axN"/>
+                <constraint firstItem="p6R-oE-Ji2" firstAttribute="trailing" secondItem="zz1-Yp-czt" secondAttribute="trailing" id="5aR-za-KAz"/>
+                <constraint firstItem="48d-yU-a1a" firstAttribute="leading" secondItem="jzv-qZ-Pk8" secondAttribute="leading" constant="20" id="CE4-t3-X5m"/>
                 <constraint firstItem="48d-yU-a1a" firstAttribute="leading" secondItem="Smc-y2-N6g" secondAttribute="leading" id="D52-JX-i6S"/>
-                <constraint firstItem="48d-yU-a1a" firstAttribute="width" secondItem="B1K-yN-xY5" secondAttribute="width" id="LTJ-BE-bB1"/>
                 <constraint firstItem="B1K-yN-xY5" firstAttribute="top" secondItem="48d-yU-a1a" secondAttribute="bottom" constant="8" symbolic="YES" id="N5q-kE-vN1"/>
                 <constraint firstItem="vQY-uQ-Q0e" firstAttribute="trailing" secondItem="48d-yU-a1a" secondAttribute="trailing" id="R2J-FK-5gT"/>
                 <constraint firstItem="48d-yU-a1a" firstAttribute="top" secondItem="Smc-y2-N6g" secondAttribute="bottom" constant="8" symbolic="YES" id="Tsm-gf-5yB"/>
+                <constraint firstItem="zz1-Yp-czt" firstAttribute="leading" secondItem="B1K-yN-xY5" secondAttribute="trailing" constant="20" id="UVT-af-FMl"/>
+                <constraint firstItem="p6R-oE-Ji2" firstAttribute="width" secondItem="zz1-Yp-czt" secondAttribute="width" id="XcH-L4-bmV"/>
+                <constraint firstItem="p6R-oE-Ji2" firstAttribute="centerY" secondItem="zz1-Yp-czt" secondAttribute="centerY" id="Ysu-DJ-rVN"/>
                 <constraint firstItem="vQY-uQ-Q0e" firstAttribute="bottom" secondItem="Smc-y2-N6g" secondAttribute="bottom" id="Ywj-vi-VFW"/>
                 <constraint firstItem="vQY-uQ-Q0e" firstAttribute="leading" secondItem="Smc-y2-N6g" secondAttribute="trailing" constant="8" id="ZgK-zA-he0"/>
-                <constraint firstAttribute="trailing" secondItem="B1K-yN-xY5" secondAttribute="trailing" constant="20" symbolic="YES" id="lqW-WM-77R"/>
+                <constraint firstItem="zz1-Yp-czt" firstAttribute="top" secondItem="B1K-yN-xY5" secondAttribute="top" id="aQw-Oz-N5Q"/>
+                <constraint firstAttribute="trailing" secondItem="48d-yU-a1a" secondAttribute="trailing" constant="20" id="ivj-0w-SkS"/>
+                <constraint firstItem="zz1-Yp-czt" firstAttribute="width" secondItem="B1K-yN-xY5" secondAttribute="width" id="mhj-hh-3v8"/>
                 <constraint firstAttribute="bottom" secondItem="B1K-yN-xY5" secondAttribute="bottom" constant="20" symbolic="YES" id="s6i-8j-38S"/>
                 <constraint firstAttribute="centerX" secondItem="UYk-9g-Qh2" secondAttribute="centerX" id="xgd-cQ-6KL"/>
             </constraints>

@@ -15,7 +15,9 @@
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UILabel *generationCountLabel;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *speedSegmentedControl;
-@property (nonatomic, weak) IBOutlet UIButton *startStopButton;
+@property (nonatomic, weak) IBOutlet UIButton *playPauseButton;
+@property (nonatomic, weak) IBOutlet UIButton *stopButton;
+@property (nonatomic, weak) IBOutlet UIButton *randomButton;
 @end
 
 @implementation GOLWorldViewController
@@ -40,6 +42,9 @@
         return [count stringValue];
     }];
     
+    RAC(self.stopButton, hidden) = RACObserve(self.worldViewModel, stopButtonHidden);
+    RAC(self.randomButton, hidden) = RACObserve(self.worldViewModel, randomizeButtonHidden);
+    
     RACChannelTerminal *vmTickIntervalTerminal = RACChannelTo(self.worldViewModel, tickInterval);
     RACChannelTerminal *segmentedControlTerminal = [self.speedSegmentedControl rac_newSelectedSegmentIndexChannelWithNilValue:@1];
     [[vmTickIntervalTerminal map:^id(NSNumber *tick) {
@@ -57,9 +62,9 @@
         [self.collectionView reloadData];
     }];
     
-    [RACObserve(self.worldViewModel, startStopButtonTitle) subscribeNext:^(id x) {
+    [RACObserve(self.worldViewModel, playPauseButtonTitle) subscribeNext:^(id x) {
         @strongify(self);
-        [self.startStopButton setTitle:x forState:UIControlStateNormal];
+        [self.playPauseButton setTitle:x forState:UIControlStateNormal];
     }];
 }
 

@@ -22,7 +22,10 @@ typedef enum CellState {
 @property (nonatomic) NSTimeInterval tickInterval;
 @property (nonatomic, readonly) NSUInteger generationCount;
 
-@property (nonatomic, readonly) NSString *startStopButtonTitle;
+@property (nonatomic, readonly) NSString *playPauseButtonTitle;
+@property (nonatomic, readonly, getter = isStopButtonHidden) BOOL stopButtonHidden;
+@property (nonatomic, readonly, getter = isRandomizeButtonHidden) BOOL randomizeButtonHidden;
+
 @property (nonatomic, getter = isRunning) BOOL running;
 
 @property (nonatomic, readonly) NSUInteger rows;
