@@ -9,13 +9,12 @@
 #import "GOLWorldViewModel.h"
 #import "GOLWorld.h"
 #import "GOLCell.h"
+#import "GOLWorldRunner.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface GOLWorldViewModel ()
+@property (nonatomic, strong) GOLWorldRunner *runner;
 @property (nonatomic, strong) GOLWorld *world;
-@property (nonatomic, strong) RACSignal *clock;
-@property (nonatomic, strong) RACCommand *start;
-@property (nonatomic, strong) RACCommand *stop;
 @end
 
 @implementation GOLWorldViewModel
@@ -26,11 +25,15 @@
     if (!self) return nil;
     
     _world = world;
-    _tickInterval = 1.0;
+    _runner = [[GOLWorldRunner alloc] initWithWorld:world];
     RACSignal *generationCount = RACObserve(self.world, generationCount);
     RAC(self, generationCount) = generationCount;
     RAC(self, rows) = RACObserve(self.world, size);
     RAC(self, columns) = RACObserve(self.world, size);
+    
+    // 2 way bindings between the runner tickInterval and this tickInterval,
+    // we need the 2 ways binding because tickInterval is not readonly.
+    RACChannelTo(self,tickInterval) = RACChannelTo(self.runner, tickInterval);
     
     RACSignal *startedSignal = [generationCount map:^id(NSNumber *generation) {
         return @([generation integerValue] > 0);
@@ -46,35 +49,23 @@
             return NSLocalizedString(@"Play", nil);
         }
     }];
-    
-    RACSignal *runningSignal = RACObserve(self, running);
-    
-    RACSignal *startSignal = [[[[[RACSignal combineLatest:@[runningSignal, RACObserve(self, tickInterval)]]
-                               filter:^BOOL(RACTuple *t) {
-                                   return [t.first boolValue];
-                               }]
-                                map:^id(RACTuple *t) {
-                                  return t.second;
-                              }]
-                              setNameWithFormat:@"startClockSignal"] logAll];
-    
-    RACSignal *stopSignal = [[[runningSignal filter:^BOOL(id value) { return ![value boolValue]; }] setNameWithFormat:@"stopClockSignal"] logAll];
-    
-    @weakify(self);
-    self.clock = [[[[[startSignal map:^RACStream *(NSNumber *interval) {
-                       return [[RACSignal interval:[interval doubleValue]
-                                          onScheduler:[RACScheduler mainThreadScheduler]]
-                               takeUntil:stopSignal];
-                    }] switchToLatest]
-                    
-                   doNext:^(id x) {
-                       @strongify(self);
-                       [self.world tick];
-                   }]
-                   
-                   setNameWithFormat:@"clockSignal"] logAll];
-    
+
     return self;
+}
+
+- (RACSignal *)clock
+{
+    return self.runner.clock;
+}
+
+- (BOOL)isRunning
+{
+    return [self.runner isRunning];
+}
+
+- (void)setRunning:(BOOL)running
+{
+    self.runner.running = running;
 }
 
 - (NSUInteger)numberOfItems

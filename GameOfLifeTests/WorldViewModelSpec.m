@@ -16,10 +16,11 @@
 #import "GOLWorldViewModel.h"
 #import "GOLWorld.h"
 #import "GOLCell.h"
+#import "GOLWorldRunner.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface GOLWorldViewModel ()
-@property (nonatomic, strong) RACSignal *clock;
+@property (nonatomic, strong) GOLWorldRunner *runner;
 @end
 
 SpecBegin(GOLWorldViewModel)
@@ -59,6 +60,40 @@ describe(@"WorldViewModel", ^{
 
     });
     
+    describe(@"Forward to Runner", ^{
+        __block GOLWorldRunner *mockRunner;
+        beforeEach(^{
+            mockRunner = mock([GOLWorldRunner class]);
+            vm.runner = mockRunner;
+        });
+        it(@"forwards -(RACSignal*)clock to runner", ^{
+            RACSignal *_ = vm.clock;
+            [verify(mockRunner) clock];
+        });
+        
+        it(@"forwards isRunning call to runner", ^{
+            BOOL _ = [vm isRunning];
+            [verify(mockRunner) isRunning];
+        });
+        
+        it(@"forwards isRunning call to runner", ^{
+            vm.running = YES;
+            [verify(mockRunner) setRunning:YES];
+        });
+    });
+    
+    it(@"binds tickInterval to runner.tickInterval", ^{
+        expect(vm.tickInterval).to.equal(vm.runner.tickInterval);
+    });
+    
+    it(@"forwards setTickInterval call to runner", ^{
+        vm.tickInterval = 10;
+        expect(vm.runner.tickInterval).equal(10);
+        vm.runner.tickInterval = 5;
+        expect(vm.tickInterval).equal(5);
+    });
+    
+
     
     describe(@"Button visibility", ^{
         it(@"has Play button title when the world is not running", ^{
@@ -87,53 +122,6 @@ describe(@"WorldViewModel", ^{
         it(@"hides the randomize button when the simulation is started", ^{
             [world tick];
             expect(vm.randomizeButtonHidden).to.equal(YES);
-        });
-    });
-    
-    
-    describe(@"ticking", ^{
-        beforeEach(^{
-            vm.tickInterval = 0.2;
-            vm.active = YES;
-        });
-        afterEach(^{
-            vm.clock = nil;
-        });
-        
-        it(@"tick the world on every clock tick", ^{
-            [vm.clock subscribeNext:^(id x) {
-            }];
-            vm.running = YES;
-            expect(vm.generationCount).will.equal(5);
-        });
-
-        it(@"changes the frequency with the tick interval", ^{
-            vm.tickInterval = 0.1;
-            NSTimeInterval timeout = 1.0;
-            
-            __block NSUInteger counter = 0;
-            [vm.clock subscribeNext:^(id x) {
-                counter++;
-            }];
-            vm.running = YES;
-            [Expecta setAsynchronousTestTimeout:timeout];
-            expect(counter).will.equal((timeout / vm.tickInterval));
-
-        });
-        
-        it(@"stop if running is set to NO", ^{
-            __block NSError *timeout = nil;
-            __block NSUInteger counter = 0;
-            [[vm.clock timeout:0.5 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-                vm.running = NO;
-                counter++;
-            } error:^(NSError *error) {
-                timeout = error;
-            }];
-            vm.running = YES;
-            
-            expect(counter).will.equal(1);
-            expect(timeout).willNot.beNil();
         });
     });
 });

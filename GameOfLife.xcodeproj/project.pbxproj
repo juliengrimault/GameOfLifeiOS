@@ -27,6 +27,8 @@
 		F90F8D0C189B613B00BB5F10 /* GOLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F8D0B189B613B00BB5F10 /* GOLCell.m */; };
 		F917C8A2189C9C730040458B /* UISegmentedControl+GOLWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = F917C8A1189C9C730040458B /* UISegmentedControl+GOLWorld.m */; };
 		F917C8A4189C9C8A0040458B /* WorldSpeedSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F917C8A3189C9C8A0040458B /* WorldSpeedSpec.m */; };
+		F917C8A6189CB01C0040458B /* WorldRunnerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F917C8A5189CB01C0040458B /* WorldRunnerSpec.m */; };
+		F917C8A9189CB0500040458B /* GOLWorldRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = F917C8A8189CB0500040458B /* GOLWorldRunner.m */; };
 		F9B402AB189B63BB0088C0FA /* CellSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B402AA189B63BB0088C0FA /* CellSpec.m */; };
 		F9B402AD189B6E2A0088C0FA /* RuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B402AC189B6E2A0088C0FA /* RuleSpec.m */; };
 		F9B402B0189B6E530088C0FA /* GOLRule.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B402AF189B6E530088C0FA /* GOLRule.m */; };
@@ -76,6 +78,9 @@
 		F917C8A0189C9C730040458B /* UISegmentedControl+GOLWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+GOLWorld.h"; sourceTree = "<group>"; };
 		F917C8A1189C9C730040458B /* UISegmentedControl+GOLWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+GOLWorld.m"; sourceTree = "<group>"; };
 		F917C8A3189C9C8A0040458B /* WorldSpeedSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldSpeedSpec.m; sourceTree = "<group>"; };
+		F917C8A5189CB01C0040458B /* WorldRunnerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldRunnerSpec.m; sourceTree = "<group>"; };
+		F917C8A7189CB0500040458B /* GOLWorldRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOLWorldRunner.h; sourceTree = "<group>"; };
+		F917C8A8189CB0500040458B /* GOLWorldRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GOLWorldRunner.m; sourceTree = "<group>"; };
 		F9B402AA189B63BB0088C0FA /* CellSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellSpec.m; sourceTree = "<group>"; };
 		F9B402AC189B6E2A0088C0FA /* RuleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleSpec.m; sourceTree = "<group>"; };
 		F9B402AE189B6E530088C0FA /* GOLRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOLRule.h; sourceTree = "<group>"; };
@@ -171,6 +176,8 @@
 				F9B402B9189BAAC90088C0FA /* GOLWorldViewController.xib */,
 				F917C8A0189C9C730040458B /* UISegmentedControl+GOLWorld.h */,
 				F917C8A1189C9C730040458B /* UISegmentedControl+GOLWorld.m */,
+				F917C8A7189CB0500040458B /* GOLWorldRunner.h */,
+				F917C8A8189CB0500040458B /* GOLWorldRunner.m */,
 			);
 			path = GameOfLife;
 			sourceTree = "<group>";
@@ -196,6 +203,7 @@
 				F9B402AC189B6E2A0088C0FA /* RuleSpec.m */,
 				F9B402B4189B8E220088C0FA /* WorldViewModelSpec.m */,
 				F917C8A3189C9C8A0040458B /* WorldSpeedSpec.m */,
+				F917C8A5189CB01C0040458B /* WorldRunnerSpec.m */,
 			);
 			path = GameOfLifeTests;
 			sourceTree = "<group>";
@@ -377,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9B402B3189B8E130088C0FA /* GOLWorldViewModel.m in Sources */,
+				F917C8A9189CB0500040458B /* GOLWorldRunner.m in Sources */,
 				F90F8D09189B5D2500BB5F10 /* GOLGrid.m in Sources */,
 				F90F8D04189B58D100BB5F10 /* GOLWorld.m in Sources */,
 				F9B402B0189B6E530088C0FA /* GOLRule.m in Sources */,
@@ -394,6 +403,7 @@
 			files = (
 				F9B402AD189B6E2A0088C0FA /* RuleSpec.m in Sources */,
 				F917C8A4189C9C8A0040458B /* WorldSpeedSpec.m in Sources */,
+				F917C8A6189CB01C0040458B /* WorldRunnerSpec.m in Sources */,
 				F90F8D06189B5CF600BB5F10 /* GridSpec.m in Sources */,
 				F90F8D01189B589700BB5F10 /* WorldSpec.m in Sources */,
 				F9B402B5189B8E220088C0FA /* WorldViewModelSpec.m in Sources */,
