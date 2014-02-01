@@ -25,6 +25,8 @@
 		F90F8D06189B5CF600BB5F10 /* GridSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F8D05189B5CF600BB5F10 /* GridSpec.m */; };
 		F90F8D09189B5D2500BB5F10 /* GOLGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F8D08189B5D2500BB5F10 /* GOLGrid.m */; };
 		F90F8D0C189B613B00BB5F10 /* GOLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F90F8D0B189B613B00BB5F10 /* GOLCell.m */; };
+		F917C8A2189C9C730040458B /* UISegmentedControl+GOLWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = F917C8A1189C9C730040458B /* UISegmentedControl+GOLWorld.m */; };
+		F917C8A4189C9C8A0040458B /* WorldSpeedSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F917C8A3189C9C8A0040458B /* WorldSpeedSpec.m */; };
 		F9B402AB189B63BB0088C0FA /* CellSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B402AA189B63BB0088C0FA /* CellSpec.m */; };
 		F9B402AD189B6E2A0088C0FA /* RuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B402AC189B6E2A0088C0FA /* RuleSpec.m */; };
 		F9B402B0189B6E530088C0FA /* GOLRule.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B402AF189B6E530088C0FA /* GOLRule.m */; };
@@ -71,6 +73,9 @@
 		F90F8D08189B5D2500BB5F10 /* GOLGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GOLGrid.m; sourceTree = "<group>"; };
 		F90F8D0A189B613B00BB5F10 /* GOLCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOLCell.h; sourceTree = "<group>"; };
 		F90F8D0B189B613B00BB5F10 /* GOLCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GOLCell.m; sourceTree = "<group>"; };
+		F917C8A0189C9C730040458B /* UISegmentedControl+GOLWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+GOLWorld.h"; sourceTree = "<group>"; };
+		F917C8A1189C9C730040458B /* UISegmentedControl+GOLWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+GOLWorld.m"; sourceTree = "<group>"; };
+		F917C8A3189C9C8A0040458B /* WorldSpeedSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldSpeedSpec.m; sourceTree = "<group>"; };
 		F9B402AA189B63BB0088C0FA /* CellSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellSpec.m; sourceTree = "<group>"; };
 		F9B402AC189B6E2A0088C0FA /* RuleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleSpec.m; sourceTree = "<group>"; };
 		F9B402AE189B6E530088C0FA /* GOLRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOLRule.h; sourceTree = "<group>"; };
@@ -164,6 +169,8 @@
 				F9B402B6189BA3240088C0FA /* GOLWorldViewController.h */,
 				F9B402B7189BA3240088C0FA /* GOLWorldViewController.m */,
 				F9B402B9189BAAC90088C0FA /* GOLWorldViewController.xib */,
+				F917C8A0189C9C730040458B /* UISegmentedControl+GOLWorld.h */,
+				F917C8A1189C9C730040458B /* UISegmentedControl+GOLWorld.m */,
 			);
 			path = GameOfLife;
 			sourceTree = "<group>";
@@ -188,6 +195,7 @@
 				F9B402AA189B63BB0088C0FA /* CellSpec.m */,
 				F9B402AC189B6E2A0088C0FA /* RuleSpec.m */,
 				F9B402B4189B8E220088C0FA /* WorldViewModelSpec.m */,
+				F917C8A3189C9C8A0040458B /* WorldSpeedSpec.m */,
 			);
 			path = GameOfLifeTests;
 			sourceTree = "<group>";
@@ -375,6 +383,7 @@
 				F9B402B8189BA3240088C0FA /* GOLWorldViewController.m in Sources */,
 				F90F8D0C189B613B00BB5F10 /* GOLCell.m in Sources */,
 				F90F8CDE189B547F00BB5F10 /* main.m in Sources */,
+				F917C8A2189C9C730040458B /* UISegmentedControl+GOLWorld.m in Sources */,
 				F90F8CE2189B547F00BB5F10 /* GOLAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9B402AD189B6E2A0088C0FA /* RuleSpec.m in Sources */,
+				F917C8A4189C9C8A0040458B /* WorldSpeedSpec.m in Sources */,
 				F90F8D06189B5CF600BB5F10 /* GridSpec.m in Sources */,
 				F90F8D01189B589700BB5F10 /* WorldSpec.m in Sources */,
 				F9B402B5189B8E220088C0FA /* WorldViewModelSpec.m in Sources */,

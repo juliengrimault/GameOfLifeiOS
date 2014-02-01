@@ -8,13 +8,13 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "GOLWorldViewController.h"
 #import "GOLWorldViewModel.h"
+#import "UISegmentedControl+GOLWorld.h"
 
 @interface GOLWorldViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) GOLWorldViewModel *worldViewModel;
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UILabel *generationCountLabel;
-@property (nonatomic, weak) IBOutlet UILabel *tickIntervalLabel;
-@property (nonatomic, weak) IBOutlet UISlider *tickerIntervalSlider;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *speedSegmentedControl;
 @property (nonatomic, weak) IBOutlet UIButton *startStopButton;
 @end
 
@@ -40,11 +40,16 @@
         return [count stringValue];
     }];
     
-    RAC(self.tickIntervalLabel, text) = [RACObserve(self.worldViewModel, tickInterval) map:^id(id value) {
-        return [NSString stringWithFormat:@"%.2fs", [value doubleValue]];
-    }];
+    RACChannelTerminal *vmTickIntervalTerminal = RACChannelTo(self.worldViewModel, tickInterval);
+    RACChannelTerminal *segmentedControlTerminal = [self.speedSegmentedControl rac_newSelectedSegmentIndexChannelWithNilValue:@1];
+    [[vmTickIntervalTerminal map:^id(NSNumber *tick) {
+        return @([UISegmentedControl indexForTickInterval:[tick doubleValue]]);
+    }] subscribe:segmentedControlTerminal];
     
-    RACChannelTo(self.worldViewModel, tickInterval) = [self.tickerIntervalSlider rac_newValueChannelWithNilValue:@1];
+    [[segmentedControlTerminal map:^id(NSNumber *selectedIndex) {
+        return @([UISegmentedControl tickIntervalForIndex:[selectedIndex integerValue]]);
+    }] subscribe:vmTickIntervalTerminal];
+    
     
     @weakify(self);
     [self.worldViewModel.clock subscribeNext:^(id x) {
@@ -69,6 +74,7 @@
     [super viewDidDisappear:animated];
     self.worldViewModel.active = NO;
 }
+
 
 
 #pragma mark - UICollectionViewDataSource
