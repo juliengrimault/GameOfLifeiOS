@@ -50,17 +50,16 @@ describe(@"WorldViewModel", ^{
         expect(vm.rows).to.equal(world.size);
     });
     
-    it(@"has the number of items to display", ^{
-        expect(vm.numberOfItems).to.equal(world.size * world.size);
-    });
-    
     it(@"picks the correct row, column for a given index", ^{
-        expect(vm.numberOfItems).to.equal(world.size * world.size);
-        for(int i = 0; i < vm.numberOfItems; i++) {
-            GOLCell *c = [world cellAtRow:(i / vm.columns) col:(i % vm.columns)];
-            expect([vm cellStateForItemAtIndex:i]).to.equal((CellState)[c isAlive]);
+        id mockWorld = mock([GOLWorld class]);
+        vm.world = mockWorld;
+        
+        for(int i = 0; i < vm.rows; i++) {
+            for(int j = 0; j < vm.columns; j++) {
+                __unused CellState _ = [vm cellStateForRow:i column:j];
+                [verify(mockWorld) cellAtRow:i col:j];
+            }
         }
-
     });
     
     describe(@"Forward to Runner", ^{
@@ -70,7 +69,7 @@ describe(@"WorldViewModel", ^{
             vm.runner = mockRunner;
         });
         it(@"forwards -(RACSignal*)clock to runner", ^{
-            RACSignal *_ = vm.clock;
+            __unused RACSignal *_ = vm.clock;
             [verify(mockRunner) clock];
         });
         

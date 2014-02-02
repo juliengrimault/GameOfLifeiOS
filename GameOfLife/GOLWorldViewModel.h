@@ -8,13 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <ReactiveViewModel/ReactiveViewModel.h>
+#import "GOLCellState.h"
 @class GOLWorld;
 @class RACCommand;
-
-typedef enum CellState {
-    CellStateDead,
-    CellStateAlive
-} CellState;
 
 @interface GOLWorldViewModel : RVMViewModel
 
@@ -46,9 +42,7 @@ typedef enum CellState {
 // Info to render the World
 @property (nonatomic, readonly) NSUInteger rows;
 @property (nonatomic, readonly) NSUInteger columns;
-// This is to make it handy to display the world in a CollectionView
-@property (nonatomic, readonly) NSUInteger numberOfItems;
-- (CellState)cellStateForItemAtIndex:(NSUInteger)index;
+- (CellState)cellStateForRow:(NSUInteger)row column:(NSUInteger)column;
 
 
 - (id)initWithWorld:(GOLWorld *)world;

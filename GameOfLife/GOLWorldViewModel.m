@@ -87,16 +87,10 @@
     [self.world seed:pattern];
 }
 
-#pragma mark - UICollectionViewDataSource
 
-- (NSUInteger)numberOfItems
+- (CellState)cellStateForRow:(NSUInteger)row column:(NSUInteger)column
 {
-    return self.rows * self.columns;
-    
-}
-- (CellState)cellStateForItemAtIndex:(NSUInteger)index
-{
-    GOLCell *cell = [self.world cellAtRow:index / self.columns col:index % self.columns];
+    GOLCell *cell = [self.world cellAtRow:row col:column];
     if ([cell isAlive]) {
         return CellStateAlive;
     } else {

@@ -9,10 +9,11 @@
 #import "GOLWorldViewController.h"
 #import "GOLWorldViewModel.h"
 #import "UISegmentedControl+GOLWorld.h"
+#import "GOLWorldView.h"
 
-@interface GOLWorldViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface GOLWorldViewController ()<GOLWorldViewDataSource>
 @property (nonatomic, strong) GOLWorldViewModel *worldViewModel;
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet GOLWorldView *worldView;
 @property (nonatomic, weak) IBOutlet UILabel *generationCountLabel;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *speedSegmentedControl;
 @property (nonatomic, weak) IBOutlet UIButton *playPauseButton;
@@ -36,7 +37,7 @@
 {
     [super viewDidLoad];
     
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+    self.worldView.dataSource = self;
     
     RAC(self.generationCountLabel, text) = [RACObserve(self.worldViewModel, generationCount) map:^id(NSNumber *count) {
         return [count stringValue];
@@ -62,7 +63,7 @@
     // reload the collecitonview whenever we send a new tick
     [self.worldViewModel.clock subscribeNext:^(id x) {
         @strongify(self);
-        [self.collectionView reloadData];
+        [self.worldView setNeedsDisplay];
     }];
     
     // update the play_pause button title when needed
@@ -86,24 +87,21 @@
 
 
 
-#pragma mark - UICollectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+#pragma mark - GOLWorldViewDataSource
+- (NSUInteger)numberOfRowsInWorldView:(GOLWorldView *)worldView
 {
-    return self.worldViewModel.numberOfItems;
+    return self.worldViewModel.rows;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (NSUInteger)numberOfColumnInWorldView:(GOLWorldView *)worldView
 {
-    CellState state = [self.worldViewModel cellStateForItemAtIndex:indexPath.item];
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-    
-    UIColor *color = state == CellStateAlive ? [UIColor blackColor] : [UIColor whiteColor];
-    cell.contentView.backgroundColor = color;
-    
-    return cell;
+    return self.worldViewModel.columns;
 }
 
-#pragma mark - UICollectionViewDelegate
+- (CellState)worldView:(GOLWorldView *)worldView cellStateForRow:(NSUInteger)row column:(NSUInteger)column
+{
+    return [self.worldViewModel cellStateForRow:row column:column];
+}
 
 #pragma mark - UIButton
 - (IBAction)playOrPauseSimulation:(id)sender
@@ -117,13 +115,13 @@
 - (IBAction)stopSimulation:(id)sender
 {
     [self.worldViewModel stop];
-    [self.collectionView reloadData];
+    [self.worldView setNeedsDisplay];
 }
 
 - (IBAction)randomizeWorld:(id)sender
 {
     [self.worldViewModel randomize];
-    [self.collectionView reloadData];
+    [self.worldView setNeedsDisplay];
 }
 
 @end

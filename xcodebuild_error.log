@@ -1,0 +1,6 @@
+2014-02-02 10:52:05.307 xcodebuild[21692:1007] FuzzyAutocomplete: Plugin loaded
+2014-02-02 10:52:06.345 xcodebuild[21692:1007] [MT] DVTAssertions: Warning in /SourceCache/DTDeviceKit/DTDeviceKit-3697/DTDeviceKitBase/DTDeviceKitBase_Utilities.m:503
+Details:  Failed to register "/System/Library/CoreServices/CoreTypes.bundle/Contents/Library/MobileDevices.bundle" with Launch Services, error code: -10811.
+Function: __RegisterUTIsIfNeeded_block_invoke
+Thread:   <NSThread: 0x7fe09940e2b0>{name = (null), num = 1}
+Please file a bug at http://bugreport.apple.com with this warning message and any useful information you can provide.
