@@ -17,17 +17,22 @@ SpecBegin(GOLGrid)
 
 describe(@"Grid", ^{
     __block GOLGrid *grid;
-    NSUInteger size = 5;
+    __block CGSize size;
     beforeEach(^{
+        size = CGSizeMake(5, 10);
         grid = [[GOLGrid alloc] initWithSize:size];
     });
     
     it(@"has a size", ^{
-        expect(grid.size).to.equal(5);
+        expect(grid.rows).to.equal(size.height);
+        expect(grid.columns).to.equal(size.width);
     });
     
     it(@"can access a cell", ^{
         id cell = [grid cellAtRow:0 col:0];
+        expect(cell).to.beNil;
+        
+        cell = [grid cellAtRow:size.height - 1 col:size.width - 1];
         expect(cell).to.beNil;
     });
     
@@ -44,7 +49,7 @@ describe(@"Grid", ^{
             return [NSNull null];
         }];
         expect(grid).notTo.beNil;
-        expect(counter).to.equal(size * size);
+        expect(counter).to.equal(size.width * size.height);
     });
     
     describe(@"Neighbours", ^{
@@ -79,12 +84,12 @@ describe(@"Grid", ^{
             }
         });
         
-        it(@"returns the 3 cells for (size-1, size-1)", ^{
-            NSArray *adjacents = [grid neighboursAtRow:4 col:4];
+        it(@"returns the 3 cells for (rows-1, column-1)", ^{
+            NSArray *adjacents = [grid neighboursAtRow:9 col:4];
             NSArray *expected = @[
-                                  [NSValue valueWithCGPoint:CGPointMake(3, 3)],
-                                  [NSValue valueWithCGPoint:CGPointMake(3, 4)],
-                                  [NSValue valueWithCGPoint:CGPointMake(4, 3)]];
+                                  [NSValue valueWithCGPoint:CGPointMake(8, 3)],
+                                  [NSValue valueWithCGPoint:CGPointMake(8, 4)],
+                                  [NSValue valueWithCGPoint:CGPointMake(9, 3)]];
             
             expect(adjacents.count).to.equal(expected.count);
             for (NSValue *v in expected) {

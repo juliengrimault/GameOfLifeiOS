@@ -10,28 +10,31 @@
 
 @interface GOLGrid ()
 @property (nonatomic, copy) NSArray *grid;
-@property (nonatomic) NSUInteger size;
+@property (nonatomic) NSUInteger rows;
+@property (nonatomic) NSUInteger columns;
 @end
 @implementation GOLGrid
 
-- (id)initWithSize:(NSUInteger)size
+- (id)initWithSize:(CGSize)size
 {
     return [self initWithSize:size cellBlock:nil];
 }
 
-- (id)initWithSize:(NSUInteger)size cellBlock:(GridInitBlock)initBlock
+- (id)initWithSize:(CGSize)size cellBlock:(GridInitBlock)initBlock
 {
     self = [super init];
     if (!self) return nil;
     
-    self.size = size;
-    NSMutableArray *grid = [[NSMutableArray alloc] initWithCapacity:size];
-    for (int i = 0; i < size; i++) {
-        NSMutableArray *a = [[NSMutableArray alloc] initWithCapacity:size];
-        for (int j = 0; j < size; j++) {
+    self.columns = size.width;
+    self.rows = size.height;
+    
+    NSMutableArray *grid = [NSMutableArray array];
+    for (int row = 0; row < self.rows; row++) {
+        NSMutableArray *a = [NSMutableArray array];
+        for (int col = 0; col < self.columns; col++) {
             id object = nil;
             if (initBlock != nil) {
-                object = initBlock(i,j);
+                object = initBlock(row,col);
             }
             if (object == nil) {
                 object = [NSNull null];
@@ -58,10 +61,10 @@
 - (NSArray *)neighboursAtRow:(NSUInteger)row col:(NSUInteger)col
 {
     NSUInteger minRow = MAX((NSInteger)row - 1, 0);
-    NSUInteger maxRow = MIN(row + 1, self.size - 1);
+    NSUInteger maxRow = MIN(row + 1, self.rows - 1);
     
     NSUInteger minCol = MAX((NSInteger)col - 1, 0);
-    NSUInteger maxCol = MIN(col + 1, self.size - 1);
+    NSUInteger maxCol = MIN(col + 1, self.columns - 1);
     
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:8];
     for (NSUInteger i = minRow; i <= maxRow; i++) {

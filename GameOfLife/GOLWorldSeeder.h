@@ -11,7 +11,7 @@
 @interface GOLWorldSeeder : NSObject
 
 @property (nonatomic) CGFloat lifeProbability;
-- (id)initWithSize:(NSUInteger)size;
+- (id)initWithSize:(CGSize)size;
 
 - (NSString *)generatePattern;
 @end

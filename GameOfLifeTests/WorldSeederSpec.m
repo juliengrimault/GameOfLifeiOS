@@ -23,17 +23,18 @@
 SpecBegin(GOLWorldSeeder)
 describe(@"World Seeder", ^{
     __block GOLWorldSeeder *seeder;
-    NSUInteger size = 10;
+    __block CGSize size;
     beforeEach(^{
+        size = CGSizeMake(10, 10);
         seeder = [[GOLWorldSeeder alloc] initWithSize:size];
     });
     
     it(@"generates a pattern with the correct dimensions", ^{
         NSString *pattern = [seeder generatePattern];
         NSArray *lines = [pattern componentsSeparatedByString:@"\n"];
-        expect(lines).to.haveCountOf(size);
+        expect(lines).to.haveCountOf(size.height);
         for(NSString *line in lines) {
-            expect(line.length).to.equal(size);
+            expect(line.length).to.equal(size.width);
         }
     });
     
@@ -41,7 +42,7 @@ describe(@"World Seeder", ^{
         seeder.lifeProbability = 1;
         NSString *pattern = [seeder generatePattern];
         NSArray *lines = [pattern componentsSeparatedByString:@"\n"];
-        expect(lines).to.haveCountOf(size);
+        expect(lines).to.haveCountOf(size.height);
         for(NSString *line in lines) {
             for (int i = 0; i < line.length; i++) {
                 expect([line characterAtIndex:i]).to.equal('*');
@@ -53,7 +54,7 @@ describe(@"World Seeder", ^{
         seeder.lifeProbability = 0;
         NSString *pattern = [seeder generatePattern];
         NSArray *lines = [pattern componentsSeparatedByString:@"\n"];
-        expect(lines).to.haveCountOf(size);
+        expect(lines).to.haveCountOf(size.height);
         for(NSString *line in lines) {
             for (int i = 0; i < line.length; i++) {
                 expect([line characterAtIndex:i]).to.equal('.');

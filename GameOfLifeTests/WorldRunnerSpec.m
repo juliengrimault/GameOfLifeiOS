@@ -32,7 +32,7 @@ describe(@"WorldRunner", ^{
     __block GOLWorldRunner *runner;
     
     beforeEach(^{
-        world = [[GOLWorld alloc] initWithSize:2];
+        world = [[GOLWorld alloc] initWithSize:CGSizeMake(2,2)];
         [world seed:seedPattern];
         runner = [[GOLWorldRunner alloc] initWithWorld:world];
     });

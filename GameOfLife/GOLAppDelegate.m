@@ -17,7 +17,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    GOLWorld *world = [[GOLWorld alloc] initWithSize:32];
+    GOLWorld *world = [[GOLWorld alloc] initWithSize:CGSizeMake(32, 40)];
     GOLWorldViewModel *vm = [[GOLWorldViewModel alloc] initWithWorld:world];
     [vm randomize];
     self.window.rootViewController = [[GOLWorldViewController alloc] initWithWorldViewModel:vm];

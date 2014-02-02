@@ -29,12 +29,12 @@
     
     self.world = world;
     self.runner = [[GOLWorldRunner alloc] initWithWorld:self.world];
-    self.seeder = [[GOLWorldSeeder alloc] initWithSize:self.world.size];
+    self.seeder = [[GOLWorldSeeder alloc] initWithSize:CGSizeMake(self.world.columns, self.world.rows)];
     
     RACSignal *generationCount = RACObserve(self.world, generationCount);
     RAC(self, generationCount) = generationCount;
-    RAC(self, rows) = RACObserve(self.world, size);
-    RAC(self, columns) = RACObserve(self.world, size);
+    RAC(self, rows) = RACObserve(self.world, rows);
+    RAC(self, columns) = RACObserve(self.world, columns);
     
     // 2 way bindings between the runner tickInterval and this tickInterval,
     // we need the 2 ways binding because tickInterval is not readonly.

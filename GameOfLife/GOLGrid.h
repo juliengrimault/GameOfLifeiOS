@@ -13,10 +13,11 @@ typedef void(^GridEnumerateBlock)(NSUInteger row, NSUInteger column, id object);
 
 @interface GOLGrid : NSObject
 
-@property (nonatomic, readonly) NSUInteger size;
+@property (nonatomic, readonly) NSUInteger rows;
+@property (nonatomic, readonly) NSUInteger columns;
 
-- (id)initWithSize:(NSUInteger)size;
-- (id)initWithSize:(NSUInteger)size cellBlock:(GridInitBlock)initBlock;
+- (id)initWithSize:(CGSize)size;
+- (id)initWithSize:(CGSize)size cellBlock:(GridInitBlock)initBlock;
 
 - (id)cellAtRow:(NSUInteger)row col:(NSUInteger)col;
 

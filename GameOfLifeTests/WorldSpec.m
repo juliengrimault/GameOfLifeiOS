@@ -17,23 +17,28 @@ SpecBegin(GOLWorld)
 
 describe(@"World", ^{
     __block GOLWorld *world;
-    NSUInteger size = 6;
+    __block CGSize size;
     beforeEach(^{
+        size = CGSizeMake(7, 6);
         world = [[GOLWorld alloc] initWithSize:size];
     });
     
     it(@"has a size", ^{
-        expect(world.size).to.equal(size);
+        expect(world.rows).to.equal(size.height);
+        expect(world.columns).to.equal(size.width);
     });
     
     it(@"can access a cell", ^{
         GOLCell *cell = [world cellAtRow:0 col:0];
         expect(cell).notTo.beNil;
+        
+        cell = [world cellAtRow:size.height - 1 col:size.width - 1];
+        expect(cell).notTo.beNil;
     });
     
     it(@"initialzes all the cell to dead", ^{
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        for (int i = 0; i < size.height; i++) {
+            for (int j = 0; j < size.width; j++) {
                 id cell = [world cellAtRow:i col:j];
                 expect(cell).to.beKindOf([GOLCell class]);
             }
@@ -41,12 +46,12 @@ describe(@"World", ^{
     });
     
     NSString *pattern =
-    @"*.....\n"
-    @".*....\n"
-    @"..*...\n"
-    @"...*..\n"
-    @"....*.\n"
-    @".....*";
+    @"*......\n"
+    @".*.....\n"
+    @"..*....\n"
+    @"...*...\n"
+    @"....*..\n"
+    @".....*.";
     describe(@"ascii", ^{
         beforeEach(^{
             [world seed:pattern];
@@ -54,8 +59,8 @@ describe(@"World", ^{
         
         it(@"can be seeded", ^{
  
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
+            for (int i = 0; i < size.height; i++) {
+                for (int j = 0; j < size.width; j++) {
                     GOLCell *c = [world cellAtRow:i col:j];
                     if (i == j) {
                         expect(c.alive).to.equal(YES);
@@ -95,33 +100,33 @@ describe(@"World", ^{
     describe(@"Patterns", ^{
         describe(@"Still patterns", ^{
             NSArray *stillPatterns = @[
-              @"......\n"
-              @"..**..\n"
-              @"..**..\n"
-              @"......\n"
-              @"......\n"
-              @"......",
+              @".......\n"
+              @"..**...\n"
+              @"..**...\n"
+              @".......\n"
+              @".......\n"
+              @".......",
               
-              @"......\n"
-              @"..**..\n"
-              @".*..*.\n"
-              @"..**..\n"
-              @"......\n",
-              @"......",
+              @".......\n"
+              @"..**...\n"
+              @".*..*..\n"
+              @"..**...\n"
+              @".......\n",
+              @".......",
               
-              @"......\n"
-              @"..**..\n"
-              @".*..*.\n"
-              @"..*.*.\n"
-              @"...*..\n",
-              @"......",
+              @".......\n"
+              @"..**...\n"
+              @".*..*..\n"
+              @"..*.*..\n"
+              @"...*...\n",
+              @".......",
               
-              @"......\n"
-              @".**...\n"
-              @".*.*..\n"
-              @"..*...\n"
-              @"......\n",
-              @"......"];
+              @".......\n"
+              @".**....\n"
+              @".*.*...\n"
+              @"..*....\n"
+              @".......\n",
+              @"......."];
             
             for(NSString *p in stillPatterns) {
                 [world seed:p];
@@ -132,51 +137,51 @@ describe(@"World", ^{
         
         describe(@"Cyclic patterns", ^{
             NSArray *blinker = @[
-                                 @"......\n"
-                                 @"......\n"
-                                 @".***..\n"
-                                 @"......\n"
-                                 @"......\n"
-                                 @"......",
+                                 @".......\n"
+                                 @".......\n"
+                                 @".***...\n"
+                                 @".......\n"
+                                 @".......\n"
+                                 @".......",
                                  
-                                 @"......\n"
-                                 @"..*...\n"
-                                 @"..*...\n"
-                                 @"..*...\n"
-                                 @"......\n"
-                                 @"......"
+                                 @".......\n"
+                                 @"..*....\n"
+                                 @"..*....\n"
+                                 @"..*....\n"
+                                 @".......\n"
+                                 @"......."
                                  ];
             
             NSArray *toad = @[
-                                  @"......\n"
-                                  @"......\n"
-                                  @"..***.\n"
-                                  @".***..\n"
-                                  @"......\n"
-                                  @"......",
+                                  @".......\n"
+                                  @".......\n"
+                                  @"..***..\n"
+                                  @".***...\n"
+                                  @".......\n"
+                                  @".......",
                               
-                                 @"......\n"
-                                 @"...*..\n"
-                                 @".*..*.\n"
-                                 @".*..*.\n"
-                                 @"..*...\n"
-                                 @"......"
+                                 @".......\n"
+                                 @"...*...\n"
+                                 @".*..*..\n"
+                                 @".*..*..\n"
+                                 @"..*....\n"
+                                 @"......."
                                  ];
             
             NSArray *beacon = @[
-                              @"......\n"
-                              @".**...\n"
-                              @".**...\n"
-                              @"...**.\n"
-                              @"...**.\n"
-                              @"......",
+                              @".......\n"
+                              @".**....\n"
+                              @".**....\n"
+                              @"...**..\n"
+                              @"...**..\n"
+                              @".......",
                               
-                              @"......\n"
-                              @".**...\n"
-                              @".*....\n"
-                              @"....*.\n"
-                              @"...**.\n"
-                              @"......"];
+                              @".......\n"
+                              @".**....\n"
+                              @".*.....\n"
+                              @"....*..\n"
+                              @"...**..\n"
+                              @"......."];
             
             NSArray *cyclicPatterns = @[blinker, toad, beacon];
             

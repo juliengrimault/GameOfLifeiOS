@@ -9,17 +9,20 @@
 #import "GOLWorldSeeder.h"
 
 @interface GOLWorldSeeder()
-@property (nonatomic) NSUInteger size;
+@property (nonatomic) NSUInteger rows;
+@property (nonatomic) NSUInteger columns;
 @end
 
 @implementation GOLWorldSeeder
 
-- (id)initWithSize:(NSUInteger)size
+- (id)initWithSize:(CGSize)size
 {
     self = [super init];
     if (!self) return nil;
     
-    self.size = size;
+    self.rows = size.height;
+    self.columns = size.width;
+    
     self.lifeProbability = 0.2;
    
     [self initializePRNG];
@@ -38,8 +41,8 @@
 - (NSString *)generatePattern
 {
     NSMutableString *pattern = [NSMutableString new];
-    for (NSUInteger i = 0; i < self.size; i++) {
-        for (NSUInteger j = 0; j < self.size; j++) {
+    for (NSUInteger i = 0; i < self.rows; i++) {
+        for (NSUInteger j = 0; j < self.columns; j++) {
             if (drand48() <= self.lifeProbability) {
                 [pattern appendString:@"*"];
             } else {
@@ -47,7 +50,7 @@
             }
         }
         
-        if (i < self.size - 1) {
+        if (i < self.rows - 1) {
             [pattern appendString:@"\n"];
         }
     }

@@ -11,10 +11,12 @@
 
 @interface GOLWorld : NSObject
 
-@property (nonatomic, readonly) NSUInteger size;
+@property (nonatomic, readonly) NSUInteger rows;
+@property (nonatomic, readonly) NSUInteger columns;
+
 @property (nonatomic, readonly) NSUInteger generationCount;
 
-- (id)initWithSize:(NSUInteger)size;
+- (id)initWithSize:(CGSize)size;
 
 - (GOLCell *)cellAtRow:(NSUInteger)row col:(NSUInteger)col;
 

@@ -33,7 +33,7 @@ describe(@"WorldViewModel", ^{
     __block GOLWorldViewModel *vm;
     
     beforeEach(^{
-        world = [[GOLWorld alloc] initWithSize:2];
+        world = [[GOLWorld alloc] initWithSize:CGSizeMake(2,2)];
         [world seed:
          @".*\n"
          @"*."];
@@ -46,8 +46,8 @@ describe(@"WorldViewModel", ^{
     });
     
     it(@"has the world number of columns and rows", ^{
-        expect(vm.columns).to.equal(world.size);
-        expect(vm.rows).to.equal(world.size);
+        expect(vm.columns).to.equal(world.columns);
+        expect(vm.rows).to.equal(world.rows);
     });
     
     it(@"picks the correct row, column for a given index", ^{

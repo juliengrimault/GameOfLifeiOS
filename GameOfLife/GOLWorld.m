@@ -12,7 +12,9 @@
 #import "GOLRule.h"
 
 @interface GOLWorld()
-@property (nonatomic) NSUInteger size;
+@property (nonatomic) NSUInteger rows;
+@property (nonatomic) NSUInteger columns;
+
 @property (nonatomic) NSUInteger generationCount;
 @property (nonatomic, copy) NSString *initialMap;
 
@@ -22,14 +24,15 @@
 
 @implementation GOLWorld
 
-- (id)initWithSize:(NSUInteger)size
+- (id)initWithSize:(CGSize)size
 {
     self = [super init];
     if (!self) return nil;
     
-    _size = size;
-    _generationCount = 0;
-    _grid = [[GOLGrid alloc] initWithSize:size
+    self.rows = size.height;
+    self.columns = size.width;
+    self.generationCount = 0;
+    self.grid = [[GOLGrid alloc] initWithSize:size
                                 cellBlock:^id(NSUInteger row, NSUInteger column) {
                                     return [GOLCell new];
                                 }];
@@ -72,15 +75,15 @@
 - (NSString *)asciiDescription
 {
     NSMutableString *desc = [NSMutableString new];
-    for (int i = 0; i < self.grid.size; i++) {
-        for (int j = 0; j < self.grid.size; j++) {
+    for (int i = 0; i < self.grid.rows; i++) {
+        for (int j = 0; j < self.grid.columns; j++) {
             GOLCell *cell = [self cellAtRow:i col:j];
             if ([cell isAlive])
                 [desc appendString:@"*"];
             else
                 [desc appendString:@"."];
         }
-        if (i < self.grid.size - 1)
+        if (i < self.grid.rows - 1)
             [desc appendString:@"\n"];
     }
     return [desc copy];
