@@ -55,12 +55,12 @@ describe(@"WorldRunner", ^{
 
         });
         
-        it(@"reset the world to its initial state", ^{
+        it(@"reset the world to its last seed", ^{
             GOLWorld *mockWorld = mock([GOLWorld class]);
             runner.world = mockWorld;
             [runner play];
             [runner stop];
-            [verify(mockWorld) seed:seedPattern];
+            [verify(mockWorld) reset];
         });
     });
     

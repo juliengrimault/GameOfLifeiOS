@@ -14,6 +14,8 @@
 @interface GOLWorld()
 @property (nonatomic) NSUInteger size;
 @property (nonatomic) NSUInteger generationCount;
+@property (nonatomic, copy) NSString *initialMap;
+
 @property (nonatomic, strong) GOLGrid *grid;
 @property (nonatomic, strong) GOLRule *rule;
 @end
@@ -32,6 +34,7 @@
                                     return [GOLCell new];
                                 }];
     _rule = [[GOLRule alloc] init];
+    _initialMap = [self asciiDescription];
     
     return self;
 }
@@ -39,6 +42,11 @@
 - (GOLCell *)cellAtRow:(NSUInteger)row col:(NSUInteger)col
 {
     return self.grid[row][col];
+}
+
+- (void)reset
+{
+    [self seed:self.initialMap];
 }
 
 - (void)seed:(NSString *)pattern
@@ -58,6 +66,7 @@
         }
         row++;
     };
+    self.initialMap = [self asciiDescription];
 }
 
 - (NSString *)asciiDescription

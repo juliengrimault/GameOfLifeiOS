@@ -27,9 +27,9 @@
     self = [super init];
     if (!self) return nil;
     
-    _world = world;
-    _runner = [[GOLWorldRunner alloc] initWithWorld:world];
-    _seeder = [[GOLWorldSeeder alloc] initWithSize:world.size];
+    self.world = world;
+    self.runner = [[GOLWorldRunner alloc] initWithWorld:self.world];
+    self.seeder = [[GOLWorldSeeder alloc] initWithSize:self.world.size];
     
     RACSignal *generationCount = RACObserve(self.world, generationCount);
     RAC(self, generationCount) = generationCount;

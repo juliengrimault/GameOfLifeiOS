@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "GOLCellState.h"
+
 @class GOLWorld;
 @class RACCommand;
 

@@ -11,7 +11,6 @@
 #import "GOLWorld.h"
 
 @interface GOLWorldRunner()
-@property (nonatomic, copy) NSString *initialPattern;
 @property (nonatomic, strong) GOLWorld *world;
 @property (nonatomic, strong) RACSignal *clock;
 @property (nonatomic, getter = isRunning) BOOL running;
@@ -24,9 +23,8 @@
     self = [super init];
     if (!self) return nil;
     
-    _world = world;
-    _initialPattern = [[world asciiDescription] copy];
-    _tickInterval = 0.5;
+    self.world = world;
+    self.tickInterval = 0.5;
     
     RACSignal *runningSignal = RACObserve(self, running);
     
@@ -70,6 +68,6 @@
 - (void)stop
 {
     self.running = NO;
-    [self.world seed:self.initialPattern];
+    [self.world reset];
 }
 @end

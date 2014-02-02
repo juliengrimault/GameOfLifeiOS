@@ -19,8 +19,8 @@
     self = [super init];
     if (!self) return nil;
     
-    _size = size;
-    _lifeProbability = 0.2;
+    self.size = size;
+    self.lifeProbability = 0.2;
    
     [self initializePRNG];
     

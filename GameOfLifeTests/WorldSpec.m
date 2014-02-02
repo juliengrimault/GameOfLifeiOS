@@ -72,6 +72,15 @@ describe(@"World", ^{
         });
     });
     
+    it(@"can reset itself to its last seeded value", ^{
+        [world seed:pattern];
+        [world tick];
+        [world reset];
+        expect(world.generationCount).to.equal(0);
+        expect([world asciiDescription]).to.equal(pattern);
+        
+    });
+    
     it (@"increases generation count by one when ticking", ^{
         [world tick];
         expect(world.generationCount).to.equal(1);

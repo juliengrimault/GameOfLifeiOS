@@ -9,7 +9,8 @@
 #import "GOLGrid.h"
 
 @interface GOLGrid ()
-@property (nonatomic, strong) NSArray *grid;
+@property (nonatomic, copy) NSArray *grid;
+@property (nonatomic) NSUInteger size;
 @end
 @implementation GOLGrid
 
@@ -23,7 +24,7 @@
     self = [super init];
     if (!self) return nil;
     
-    _size = size;
+    self.size = size;
     NSMutableArray *grid = [[NSMutableArray alloc] initWithCapacity:size];
     for (int i = 0; i < size; i++) {
         NSMutableArray *a = [[NSMutableArray alloc] initWithCapacity:size];
@@ -39,7 +40,7 @@
         }
         [grid addObject:[a copy]];
     }
-    _grid = [grid copy];
+    self.grid = grid;
     
     return self;
 }
