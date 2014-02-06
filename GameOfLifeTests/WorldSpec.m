@@ -13,6 +13,9 @@
 #import "GOLWorld.h"
 #import "GOLCell.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-string-concatenation"
+
 SpecBegin(GOLWorld)
 
 describe(@"World", ^{
@@ -199,3 +202,5 @@ describe(@"World", ^{
 });
 
 SpecEnd
+
+#pragma clang diagnostic pop

@@ -44,7 +44,7 @@ describe(@"Grid", ^{
     
     it(@"initializes the cell with the given block", ^{
         __block NSUInteger counter = 0;
-        GOLGrid *grid = [[GOLGrid alloc] initWithSize:size cellBlock:^id(NSUInteger row, NSUInteger col) {
+        grid = [[GOLGrid alloc] initWithSize:size cellBlock:^id(NSUInteger row, NSUInteger col) {
             counter++;
             return [NSNull null];
         }];
