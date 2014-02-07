@@ -36,7 +36,8 @@
 
 
 // UI related
-@property (nonatomic, readonly) NSString *playPauseButtonTitle;
+@property (nonatomic, readonly, getter = isPlayButtonHidden) BOOL playButtonHidden;
+@property (nonatomic, readonly, getter = isPauseButtonHidden) BOOL pauseButtonHidden;
 @property (nonatomic, readonly, getter = isStopButtonHidden) BOOL stopButtonHidden;
 @property (nonatomic, readonly, getter = isRandomizeButtonHidden) BOOL randomizeButtonHidden;
 

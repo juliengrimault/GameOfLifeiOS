@@ -49,13 +49,9 @@
     RAC(self, stopButtonHidden) = [startedSignal not];
     RAC(self, randomizeButtonHidden) = startedSignal;
     
-    RAC(self, playPauseButtonTitle) = [RACObserve(self, running) map:^id(NSNumber *x) {
-        if ([x boolValue]) {
-            return NSLocalizedString(@"Pause", nil);
-        } else {
-            return NSLocalizedString(@"Play", nil);
-        }
-    }];
+    RACSignal *runningSignal = RACObserve(self, running);
+    RAC(self, playButtonHidden) = runningSignal;
+    RAC(self, pauseButtonHidden) = [runningSignal not];
 
     return self;
 }

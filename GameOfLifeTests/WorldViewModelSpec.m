@@ -127,14 +127,24 @@ describe(@"WorldViewModel", ^{
     });
     
     describe(@"Button visibility", ^{
-        it(@"has Play button title when the world is not running", ^{
-            expect(vm.playPauseButtonTitle).to.equal(@"Play");
+        it(@"shows the Play button when simulation is not running", ^{
+            expect(vm.playButtonHidden).to.equal(NO);
         });
         
-        it(@"has Pause button title when the world is running", ^{
+        it(@"hides the Play button when the simulation is running", ^{
             [vm play];
-            expect(vm.playPauseButtonTitle).to.equal(@"Pause");
+            expect(vm.playButtonHidden).to.equal(YES);
         });
+        
+        it(@"hides the Pause button when the simulation is not running", ^{
+            expect(vm.pauseButtonHidden).to.equal(YES);
+        });
+        
+        it(@"shows the Pause button when the simulation is running", ^{
+            [vm play];
+            expect(vm.pauseButtonHidden).to.equal(NO);
+        });
+        
         
         it(@"shows the Stop button when simulation is started", ^{
             [world tick];
