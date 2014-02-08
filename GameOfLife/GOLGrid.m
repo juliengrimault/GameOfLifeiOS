@@ -78,6 +78,25 @@
     return values;
 }
 
+- (void)enumerateNeighboursAtRow:(NSUInteger)row column:(NSUInteger)col block:(GridEnumerateBlock)block
+{
+    NSUInteger minRow = MAX((NSInteger)row - 1, 0);
+    NSUInteger maxRow = MIN(row + 1, self.rows - 1);
+    
+    NSUInteger minCol = MAX((NSInteger)col - 1, 0);
+    NSUInteger maxCol = MIN(col + 1, self.columns - 1);
+    
+    for (NSUInteger i = minRow; i <= maxRow; i++) {
+        for (NSUInteger j = minCol; j <= maxCol; j++) {
+            if (i == row && j == col)
+                continue;
+            
+            if (block)
+                block(i, j, self.grid[i][j]);
+        }
+    }
+}
+
 - (void)enumerateCells:(GridEnumerateBlock)block
 {
     NSUInteger i = 0;

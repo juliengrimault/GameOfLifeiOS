@@ -19,8 +19,9 @@ typedef enum {
     ToolbarButtonIndexRandom,
 } ToolbarButtonIndex;
 
-@interface GOLWorldViewController ()<GOLWorldViewDataSource>
+@interface GOLWorldViewController ()<GOLWorldViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, strong) GOLWorldViewModel *worldViewModel;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet GOLWorldView *worldView;
 @property (nonatomic, weak) IBOutlet UILabel *generationCountLabel;
 @property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
@@ -50,7 +51,20 @@ typedef enum {
 {
     [super viewDidLoad];
     
+    CGRect worldViewFrame = CGRectMake(0, 0, self.worldViewModel.columns * 8, self.worldViewModel.rows * 8);
+    GOLWorldView *worldView = [[GOLWorldView alloc] initWithFrame:worldViewFrame];
+    self.worldView = worldView;
     self.worldView.dataSource = self;
+
+    CGFloat xScale = self.scrollView.bounds.size.width / worldViewFrame.size.width;
+    CGFloat yScale = self.scrollView.bounds.size.height / worldViewFrame.size.height;
+
+    CGFloat minScale = MIN(xScale, yScale);
+    
+    [self.scrollView addSubview:self.worldView];
+    self.scrollView.contentSize = self.worldView.bounds.size;
+    self.scrollView.minimumZoomScale = minScale;
+
     
     RAC(self.generationCountLabel, text) = [RACObserve(self.worldViewModel, generationCount) map:^id(NSNumber *count) {
         return [count stringValue];
@@ -193,26 +207,72 @@ typedef enum {
 }
 
 #pragma mark - UIButton
-- (IBAction)playSimulation:(id)sender
+- (void)playSimulation:(id)sender
 {
     [self.worldViewModel play];
+    [self fadeControls:YES];
 }
 
-- (IBAction)pauseSimulation:(id)sender
+- (void)pauseSimulation:(id)sender
 {
     [self.worldViewModel pause];
 }
 
-- (IBAction)stopSimulation:(id)sender
+- (void)stopSimulation:(id)sender
 {
     [self.worldViewModel stop];
     [self.worldView setNeedsDisplay];
 }
 
-- (IBAction)randomizeWorld:(id)sender
+- (void)randomizeWorld:(id)sender
 {
     [self.worldViewModel randomize];
     [self.worldView setNeedsDisplay];
 }
 
+#pragma mark - TapGestureRecognizer
+- (IBAction)viewWasTapped:(UITapGestureRecognizer *)recognizer
+{
+    [self fadeControls:!self.toolbar.hidden];
+}
+
+- (void)fadeControls:(BOOL)hide
+{
+    NSTimeInterval fadeDuration = 0.3;
+    if (!hide && self.toolbar.hidden) {
+        self.toolbar.hidden = NO;
+        self.toolbar.alpha = 0;
+        [UIView animateWithDuration:fadeDuration
+                         animations:^{
+                             self.toolbar.alpha = 1;
+                         }];
+    } else if (hide && !self.toolbar.hidden) {
+        [UIView animateWithDuration:fadeDuration
+                         animations:^{
+                             self.toolbar.alpha = 0;
+                         }
+                         completion:^(BOOL finished) {
+                             self.toolbar.hidden = YES;
+                             self.toolbar.alpha = 1;
+                         }];
+    }
+    
+    
+}
+
+- (IBAction)viewWasDoubleTapped:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    if (self.scrollView.zoomScale < self.scrollView.maximumZoomScale) {
+        [self.scrollView setZoomScale:self.scrollView.maximumZoomScale animated:YES];
+    } else {
+        [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:YES];
+    }
+}
+
+
+#pragma mark - UIScrollViewDelegate
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.worldView;
+}
 @end

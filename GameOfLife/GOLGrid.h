@@ -26,4 +26,5 @@ typedef void(^GridEnumerateBlock)(NSUInteger row, NSUInteger column, id object);
 - (NSArray *)neighboursAtRow:(NSUInteger)row col:(NSUInteger)col;
 
 - (void)enumerateCells:(GridEnumerateBlock)block;
+- (void)enumerateNeighboursAtRow:(NSUInteger)row column:(NSUInteger)col block:(GridEnumerateBlock)block;
 @end

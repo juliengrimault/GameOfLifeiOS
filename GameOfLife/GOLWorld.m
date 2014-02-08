@@ -113,16 +113,14 @@
 
 - (NSUInteger)liveNeighboursForCellAtRow:(NSUInteger)row column:(NSUInteger)column
 {
-    NSUInteger count = 0;
-    NSArray *neighbours = [self.grid neighboursAtRow:row col:column];
-    
-    for (NSValue *neighbour in neighbours) {
-        CGPoint coordinate = [neighbour CGPointValue];
-        GOLCell *cell = [self cellAtRow:coordinate.x col:coordinate.y];
+    __block NSUInteger count = 0;
+    [self.grid enumerateNeighboursAtRow:row column:column block:^(NSUInteger r, NSUInteger c, id object) {
+        GOLCell *cell = (GOLCell *)object;
         
         if ([cell isAlive])
             count += 1;
-    }
+    }];
+
     return count;
 }
 

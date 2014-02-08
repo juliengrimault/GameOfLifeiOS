@@ -7,11 +7,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GOLWorldViewController">
             <connections>
                 <outlet property="generationCountLabel" destination="vQY-uQ-Q0e" id="Je0-gA-63H"/>
+                <outlet property="scrollView" destination="q83-tL-BKC" id="roH-zz-UPD"/>
                 <outlet property="segmentControlWrapper" destination="MUm-7U-y8Y" id="zSx-Gw-cQQ"/>
                 <outlet property="speedSegmentedControl" destination="48d-yU-a1a" id="UOk-An-oLC"/>
                 <outlet property="toolbar" destination="w1i-lm-9HG" id="kjc-WS-g0H"/>
                 <outlet property="view" destination="jzv-qZ-Pk8" id="baQ-W6-RNf"/>
-                <outlet property="worldView" destination="0Pq-8C-XhO" id="ArE-Gg-1eq"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,14 +19,16 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Pq-8C-XhO" customClass="GOLWorldView">
-                    <rect key="frame" x="0.0" y="20" width="320" height="500"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="320" id="dyu-Df-BAY"/>
-                    </constraints>
-                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q83-tL-BKC">
+                    <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Qzy-nh-7ny"/>
+                        <outletCollection property="gestureRecognizers" destination="AMP-43-qTt" appends="YES" id="rS4-uC-OB7"/>
+                        <outletCollection property="gestureRecognizers" destination="5y9-iY-Wby" appends="YES" id="10m-xY-FAz"/>
+                    </connections>
+                </scrollView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generation:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smc-y2-N6g">
                     <rect key="frame" x="0.0" y="495" width="90" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -58,22 +60,35 @@
                 </toolbar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="w1i-lm-9HG" secondAttribute="trailing" id="0PH-mz-H4J"/>
-                <constraint firstItem="0Pq-8C-XhO" firstAttribute="top" secondItem="jzv-qZ-Pk8" secondAttribute="top" constant="20" symbolic="YES" id="4LX-1J-fSZ"/>
+                <constraint firstItem="q83-tL-BKC" firstAttribute="top" secondItem="jzv-qZ-Pk8" secondAttribute="top" constant="20" id="2ma-P8-Mqe"/>
                 <constraint firstItem="Smc-y2-N6g" firstAttribute="leading" secondItem="jzv-qZ-Pk8" secondAttribute="leading" id="JBV-OC-xrI"/>
                 <constraint firstItem="w1i-lm-9HG" firstAttribute="leading" secondItem="jzv-qZ-Pk8" secondAttribute="leading" id="Ki6-b0-SxL"/>
                 <constraint firstItem="vQY-uQ-Q0e" firstAttribute="bottom" secondItem="Smc-y2-N6g" secondAttribute="bottom" id="Ywj-vi-VFW"/>
                 <constraint firstItem="vQY-uQ-Q0e" firstAttribute="leading" secondItem="Smc-y2-N6g" secondAttribute="trailing" constant="8" id="ZgK-zA-he0"/>
-                <constraint firstItem="w1i-lm-9HG" firstAttribute="top" secondItem="0Pq-8C-XhO" secondAttribute="bottom" constant="4" id="iup-2H-2Pd"/>
+                <constraint firstAttribute="trailing" secondItem="q83-tL-BKC" secondAttribute="trailing" id="cgN-tL-UWO"/>
                 <constraint firstAttribute="centerX" secondItem="w1i-lm-9HG" secondAttribute="centerX" id="ko0-o3-BWY"/>
+                <constraint firstItem="q83-tL-BKC" firstAttribute="leading" secondItem="jzv-qZ-Pk8" secondAttribute="leading" id="sJ7-Rc-6fA"/>
+                <constraint firstAttribute="bottom" secondItem="q83-tL-BKC" secondAttribute="bottom" id="tmo-Gp-ZB2"/>
                 <constraint firstAttribute="bottom" secondItem="w1i-lm-9HG" secondAttribute="bottom" id="vaT-7X-6ei"/>
-                <constraint firstAttribute="centerX" secondItem="0Pq-8C-XhO" secondAttribute="centerX" id="xFS-si-N7B"/>
+                <constraint firstAttribute="centerX" secondItem="q83-tL-BKC" secondAttribute="centerX" id="xwy-pf-7rj"/>
                 <constraint firstItem="w1i-lm-9HG" firstAttribute="top" secondItem="Smc-y2-N6g" secondAttribute="bottom" constant="8" id="ydr-m1-1Sc"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <tapGestureRecognizer id="AMP-43-qTt">
+            <connections>
+                <action selector="viewWasTapped:" destination="-1" id="TnX-jL-vw8"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer numberOfTapsRequired="2" id="5y9-iY-Wby">
+            <connections>
+                <action selector="viewWasDoubleTapped:" destination="-1" id="4dG-tJ-hc6"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>
