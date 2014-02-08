@@ -20,10 +20,13 @@ typedef enum {
 } ToolbarButtonIndex;
 
 @interface GOLWorldViewController ()<GOLWorldViewDataSource, UIScrollViewDelegate>
+
 @property (nonatomic, strong) GOLWorldViewModel *worldViewModel;
+
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet GOLWorldView *worldView;
-@property (nonatomic, weak) IBOutlet UILabel *generationCountLabel;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *generationCountLabel;
+@property (nonatomic, weak) IBOutlet UIToolbar *topToolbar;
 @property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
 
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *segmentControlWrapper;
@@ -64,11 +67,6 @@ typedef enum {
     [self.scrollView addSubview:self.worldView];
     self.scrollView.contentSize = self.worldView.bounds.size;
     self.scrollView.minimumZoomScale = minScale;
-
-    
-    RAC(self.generationCountLabel, text) = [RACObserve(self.worldViewModel, generationCount) map:^id(NSNumber *count) {
-        return [count stringValue];
-    }];
     
     
     // setup 2 ways binding between the segmented control and the tickInterval in the ViewModel.
@@ -89,6 +87,10 @@ typedef enum {
     [self.worldViewModel.clock subscribeNext:^(id x) {
         @strongify(self);
         [self.worldView setNeedsDisplayInRect:[self worldViewDisplayedFrame]];
+    }];
+    
+    [RACObserve(self.worldViewModel, generationCount) subscribeNext:^(NSNumber *count) {
+        [self.generationCountLabel setTitle:[count stringValue]];
     }];
     
     RACSignal *stopHidden = RACObserve(self.worldViewModel, stopButtonHidden);
@@ -188,8 +190,6 @@ typedef enum {
     return nil;
 }
 
-
-
 #pragma mark - GOLWorldViewDataSource
 - (NSUInteger)numberOfRowsInWorldView:(GOLWorldView *)worldView
 {
@@ -241,19 +241,25 @@ typedef enum {
     NSTimeInterval fadeDuration = 0.3;
     if (!hide && self.toolbar.hidden) {
         self.toolbar.hidden = NO;
+        self.topToolbar.hidden = NO;
         self.toolbar.alpha = 0;
+        self.topToolbar.alpha = 0;
         [UIView animateWithDuration:fadeDuration
                          animations:^{
                              self.toolbar.alpha = 1;
+                             self.topToolbar.alpha = 1;
                          }];
     } else if (hide && !self.toolbar.hidden) {
         [UIView animateWithDuration:fadeDuration
                          animations:^{
                              self.toolbar.alpha = 0;
+                             self.topToolbar.alpha = 0;
                          }
                          completion:^(BOOL finished) {
                              self.toolbar.hidden = YES;
                              self.toolbar.alpha = 1;
+                             self.topToolbar.hidden = YES;
+                             self.topToolbar.alpha = 1;
                          }];
     }
     
