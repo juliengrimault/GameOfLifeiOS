@@ -88,7 +88,7 @@ typedef enum {
     // reload the collecitonview whenever we send a new tick
     [self.worldViewModel.clock subscribeNext:^(id x) {
         @strongify(self);
-        [self.worldView setNeedsDisplay];
+        [self.worldView setNeedsDisplayInRect:[self worldViewDisplayedFrame]];
     }];
     
     RACSignal *stopHidden = RACObserve(self.worldViewModel, stopButtonHidden);
@@ -221,13 +221,13 @@ typedef enum {
 - (void)stopSimulation:(id)sender
 {
     [self.worldViewModel stop];
-    [self.worldView setNeedsDisplay];
+    [self.worldView setNeedsDisplayInRect:[self worldViewDisplayedFrame]];
 }
 
 - (void)randomizeWorld:(id)sender
 {
     [self.worldViewModel randomize];
-    [self.worldView setNeedsDisplay];
+    [self.worldView setNeedsDisplayInRect:[self worldViewDisplayedFrame]];
 }
 
 #pragma mark - TapGestureRecognizer
@@ -267,6 +267,7 @@ typedef enum {
     } else {
         [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:YES];
     }
+    [self.scrollView setNeedsDisplayInRect:[self worldViewDisplayedFrame]];
 }
 
 
@@ -274,5 +275,19 @@ typedef enum {
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.worldView;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    [self.worldView setNeedsDisplayInRect:[self worldViewDisplayedFrame]];
+}
+
+- (CGRect)worldViewDisplayedFrame
+{
+    CGPoint offset = self.scrollView.contentOffset;
+    CGRect rect = CGRectMake(offset.x, offset.y,
+                             self.scrollView.bounds.size.width,
+                             self.scrollView.bounds.size.height);
+    return CGRectApplyAffineTransform(rect, CGAffineTransformInvert(self.worldView.transform));
 }
 @end

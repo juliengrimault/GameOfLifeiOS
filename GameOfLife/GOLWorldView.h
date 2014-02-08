@@ -13,6 +13,7 @@
 
 @protocol GOLWorldViewDataSource <NSObject>
 
+- (CGSize)cellSizeInWorldView:(GOLWorldView *)worldView;
 - (NSUInteger)numberOfRowsInWorldView:(GOLWorldView *)worldView;
 - (NSUInteger)numberOfColumnInWorldView:(GOLWorldView *)worldView;
 - (CellState)worldView:(GOLWorldView *)worldView cellStateForRow:(NSUInteger)row column:(NSUInteger)column;
